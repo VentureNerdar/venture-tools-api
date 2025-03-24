@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset name="NoDocCommentNagging">
+  <description>No DocBlock nags, please.</description>
+
+  <!-- Base ruleset -->
+  <rule ref="PSR12">
+    <!-- Exclude doc comment-related nags -->
+    <exclude name="Squiz.Commenting.ClassComment.Missing"/>
+    <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+    <exclude name="Squiz.Commenting.FileComment.Missing"/>
+    <exclude name="Squiz.Commenting.VariableComment.Missing"/>
+  </rule>
+
+  <!-- You can add more exclusions if you want total silence -->
+</ruleset>
