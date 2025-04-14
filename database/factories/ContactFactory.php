@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Enums\AgeGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Enums\Gender as GenderEnum;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Contact>
@@ -32,6 +33,7 @@ class ContactFactory extends Factory
             'current_prayers' => fake()->paragraph(),
             'contact_status_id' => random_int(1, 5),
             'faith_status_id' => random_int(8, 10),
+            'assigned_to' => User::inRandomOrder()->value('id') ?? User::factory(),
         ];
     }
 }
