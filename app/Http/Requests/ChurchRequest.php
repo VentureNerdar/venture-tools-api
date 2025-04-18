@@ -23,6 +23,7 @@ class ChurchRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:300',
+            'community_id' => 'required|integer|exists:communities,id',
             'description' => 'nullable|string',
             'founded_at' => 'nullable|date',
             'phone_number' => 'nullable|string|max:300',
