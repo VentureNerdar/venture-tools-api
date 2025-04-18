@@ -8,6 +8,7 @@ use App\Models\Church;
 use App\Models\ChurchPlanter;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChurchController extends Controller
 {
@@ -56,6 +57,14 @@ class ChurchController extends Controller
 
     public function browse(Request $request)
     {
+        $user = Auth::user();
+        if ($user->user_role_id == 4) {
+            $request->merge([
+                'where' => json_encode([
+                    ['key' => 'assigned_to', 'value' => $user->id]
+                ])
+            ]);
+        };
         return response()->json(...$this->service->browse($this->model, $request));
     }
 
