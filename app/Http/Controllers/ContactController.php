@@ -9,6 +9,7 @@ use App\Models\ContactCommunicationPlatform;
 use App\Services\CRUDService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * ContactController
@@ -95,6 +96,14 @@ class ContactController extends Controller
 
     public function browse(Request $request)
     {
+        $user = Auth::user();
+        if ($user->user_role_id == 4) {
+            $request->merge([
+                'where' => json_encode([
+                    ['key' => 'assigned_to', 'value' => $user->id]
+                ])
+            ]);
+        };
         return response()->json(...$this->service->browse($this->model, $request));
     }
 
