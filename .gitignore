@@ -5,6 +5,7 @@
 /public/storage
 /storage/*.key
 /storage/pail
+/storage/venture-notification-firebase-adminsdk-fbsvc-ca6b04f0e4.json
 /vendor
 .env
 .env.backup

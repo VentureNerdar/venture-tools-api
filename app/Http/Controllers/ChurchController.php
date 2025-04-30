@@ -91,4 +91,9 @@ class ChurchController extends Controller
     {
         return $this->service->restore($this->model, $id);
     }
+
+    public function view($id)
+    {
+        return $this->service->browse($this->model, null, $id);
+    }
 }

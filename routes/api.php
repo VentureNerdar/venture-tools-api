@@ -8,6 +8,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DenominationController;
 use App\Http\Controllers\FaithMilestoneController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PeopleGroupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
@@ -219,4 +220,15 @@ Route::middleware('auth:sanctum')->group(function () {
                 ->name('communityChecklist.restore');
         });
     }); // e.o COMMUNITY CHECKLIST
+
+    // NOTIFICATIONS
+    Route::prefix('notifications')->group(function () {
+        Route::get('/', [NotificationController::class, 'browse'])->name('notification.browse');
+        Route::post('/', [NotificationController::class, 'create'])->name('notification.create');
+        Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notification.sendNotification');
+        Route::prefix('id/{id}')->group(function () {
+            Route::put('/', [NotificationController::class, 'update'])->name('notification.update');
+        });
+    });
+    // e.o NOTIFICATIONS
 });
