@@ -14,7 +14,7 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie', 'auth/login', 'auth/logout'],
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['http://localhost:3000', 'http://localhost:3002', 'http://web.venture-tools.klonotech.com'],
+    'allowed_origins' => ['http://localhost:3000', 'http://localhost:3002', 'http://web.venture-tools.klonotech.com', 'http://mobile.enture-tools.klonotech.com'],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
     'max_age' => 0,
