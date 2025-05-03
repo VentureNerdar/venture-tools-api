@@ -58,13 +58,17 @@ class ChurchController extends Controller
     public function browse(Request $request)
     {
         $user = Auth::user();
+        $existingWhere = $request->has('where') ? json_decode($request->where, true) : [];
         if ($user->user_role_id == 4) {
+            $existingWhere[] = [
+                'key' => 'assigned_to',
+                'value' => $user->id,
+            ];
+
             $request->merge([
-                'where' => json_encode([
-                    ['key' => 'assigned_to', 'value' => $user->id]
-                ])
+                'where' => json_encode($existingWhere)
             ]);
-        };
+        }
         return response()->json(...$this->service->browse($this->model, $request));
     }
 

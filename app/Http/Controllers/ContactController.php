@@ -10,6 +10,7 @@ use App\Services\CRUDService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * ContactController
@@ -46,6 +47,7 @@ class ContactController extends Controller
         $contact = $this->service->save($this->model, null, $data)[0];
 
         $contact->faithMilestones()->sync($data['faith_milestones'] ?? []);
+
         $contact->peopleGroup()->sync($data['people_group'] ?? []);
 
         $contactCommunicationPlatforms = $request->input('contact_communication_platforms', []);
@@ -97,13 +99,18 @@ class ContactController extends Controller
     public function browse(Request $request)
     {
         $user = Auth::user();
+
+        $existingWhere = $request->has('where') ? json_decode($request->where, true) : [];
         if ($user->user_role_id == 4) {
+            $existingWhere[] = [
+                'key' => 'assigned_to',
+                'value' => $user->id,
+            ];
+
             $request->merge([
-                'where' => json_encode([
-                    ['key' => 'assigned_to', 'value' => $user->id]
-                ])
+                'where' => json_encode($existingWhere)
             ]);
-        };
+        }
         return response()->json(...$this->service->browse($this->model, $request));
     }
 
@@ -135,5 +142,11 @@ class ContactController extends Controller
     public function restore($id)
     {
         return $this->service->restore($this->model, $id);
+    }
+
+    public function view($id)
+    {
+        Log::info('Contact ID:', [$id]);
+        return $this->service->browse($this->model, null, $id);
     }
 }
