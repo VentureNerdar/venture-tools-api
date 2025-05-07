@@ -275,12 +275,12 @@ class TranslationSeeder extends Seeder
             ],
             'sign_out' => [
                 'en' => 'Sign Out',
-                'mm' => 'ထွက်',
+                'mm' => 'ထွက်ရန်',
                 'ne' => 'साइन आउट गर्नुहोस्',
             ],
             'log_out' => [
                 'en' => 'Log Out',
-                'mm' => 'ထွက်',
+                'mm' => 'ထွက်ရန်',
                 'ne' => 'लग आउट गर्नुहोस्',
             ],
             'page' => [
@@ -1328,7 +1328,218 @@ class TranslationSeeder extends Seeder
                 'en' => 'Leader',
                 'mm' => 'ဦးဆောင်သူ',
                 'ne' => 'नेता'
-            ]
+            ],
+            'authentication' => [
+                'en' => 'Authentication',
+                'mm' => 'စစ်မှန်ကြောင်းအထောက်အထား',
+                'ne' => 'प्रमाणीकरण'
+            ],
+            'create_contacts' => [
+                'en' => 'Create Contact',
+                'mm' => 'အဆက်အသွယ်ဖန်တီး',
+                'ne' =>  'सम्पर्क सिर्जना गर्नुहोस्',
+            ],
+            'create_churches' => [
+                'en' => 'Create Church',
+                'mm' => 'ဘုရားကျောင်းဖန်တီး',
+                'ne' => 'चर्च सिर्जना गर्नुहोस्'
+            ],
+            'create_communities' => [
+                'en' => 'Create Communities',
+                'mm' => 'အသိုင်းအဝိုင်းဖန်တီး',
+                'ne' => 'समुदायहरू सिर्जना गर्नुहोस्'
+            ],
+            'edit_contacts' => [
+                'en' => 'Edit Contact',
+                'mm' => 'အဆက်အသွယ်ပြင်ဆင်',
+                'ne' => 'सम्पर्क सम्पादन गर्नुहोस्'
+            ],
+            'edit_churches' => [
+                'en' => 'Edit Church',
+                'mm' => 'ဘုရားကျောင်းပြင်ဆင်',
+                'ne' => 'चर्च सम्पादन गर्नुहोस्'
+            ],
+            'edit_communities' => [
+                'en' => 'Edit Community',
+                'mm' => 'အဖွဲ့အစည်းပြင်ဆင်',
+                'ne' => 'समुदाय सम्पादन गर्नुहोस्'
+            ],
+            'search_contacts_by_name' => [
+                'en' => 'Search contacts by name',
+                'mm' => 'အဆက်အသွယ်များကို အမည်ဖြင့်ရှာဖွေပါ',
+                'ne' => 'नामद्वारा सम्पर्कहरू खोज्नुहोस्'
+            ],
+            'search_communities_by_name' => [
+                'en' => 'Search communities by name',
+                'mm' => 'အဖွဲ့အစည်းများကို အမည်ဖြင့်ရှာဖွေပါ',
+                'ne' => 'नामद्वारा समुदायहरू खोज्नुहोस्'
+            ],
+            'search_churches_by_name' => [
+                'en' => 'Search churches by name',
+                'mm' => 'ဘုရားကျောင်းများကို အမည်ဖြင့်ရှာဖွေပါ',
+                'ne' => 'नामद्वारा चर्चहरू खोज्नुहोस्'
+            ],
+            'venture_tools' => [
+                'en' => 'Venture Tools',
+                'mm' => 'ဗန်းချားတူး',
+                'ne' => 'उद्यम उपकरणहरू'
+            ],
+            'security' => [
+                'en' => 'Security',
+                'mm' => 'လုံခြုံရေး',
+                'ne' => 'सुरक्षा'
+            ],
+            'pin_number' => [
+                'en' => 'Pin Number',
+                'mm' => 'ပင်နံပါတ်',
+                'ne' => 'पिन नम्बर'
+            ],
+            'application_mask' => [
+                'en' => 'Application Mask',
+                'mm' => 'မျက်နှာဖုံး',
+                'ne' => 'अनुप्रयोग मास्क'
+            ],
+            'enter_your_pin_number' => [
+                'en' => 'Enter your pin number',
+                'mm' => 'ပင်နံပါတ်ထည့်ပါ',
+                'ne' => 'आफ्नो पिन नम्बर प्रविष्ट गर्नुहोस्'
+            ],
+            'confirm_your_pin_number' => [
+                'en' => 'Confirm your pin number',
+                'mm' => 'ပင်နံပါတ်ကို အတည်ပြုပါ',
+                'ne' => 'आफ्नो पिन नम्बर पुष्टि गर्नुहोस्'
+            ],
+            'no_trashed_church_found' => [
+                'en' =>  'No trashed church found',
+                'mm' => 'ဖျက်ထားသော ဘုရားကျောင်းမရှိပါ',
+                'ne' => 'फोहोर फालिएका चर्चहरू भेटिएनन्'
+            ],
+            'no_trashed_contact_found' => [
+                'en' =>  'No trashed contact found',
+                'mm' => 'ဖျက်ထားသော အဆက်အသွယ်မရှိပါ',
+                'ne' => 'रद्दीको टोकरीमा हालिएको कुनै सम्पर्क भेटिएन'
+            ],
+            'no_trashed_community_found' => [
+                'en' => 'No trashed community found',
+                'mm' =>  'ဖျက်ထားသော အသိုင်းအဝိုင်းမရှိပါ',
+                'ne' => 'रद्दीटोकरीमा हालिएको कुनै समुदाय भेटिएन'
+            ],
+            'choose_contact_status' => [
+                'en' => 'Choose contact status',
+                'mm' => 'အဆက်အသွယ်အခြေအနေကို ရွေးပါ',
+                'ne' => 'सम्पर्क स्थिति छनौट गर्नुहोस्'
+            ],
+            'title' => [
+                'en' =>  'Title',
+                'mm' => 'ခေါင်းစဉ်',
+                'ne' => 'शीर्षक'
+            ],
+            'choose_faith_status' => [
+                'en' => 'Choose Faith Status',
+                'mm' => 'ယုံကြည်ခြင်းအခြေအနေကို ရွေးချယ်ပါ',
+                'ne' => 'विश्वास स्थिति छनौट गर्नुहोस्'
+            ],
+            'statuses' => [
+                'en' =>  'Statuses',
+                'mm' => 'အခြေအနေများ',
+                'ne' => 'स्थितिहरू'
+            ],
+            'general_infromation' => [
+                'en' => 'General Information',
+                'mm' => 'အထွေထွေ အချက်အလက်',
+                'ne' => 'सामान्य जानकारी'
+            ],
+            'choose_people_group' => [
+                'en' => 'Choose people group',
+                'mm' => 'လူမျိုးအုပ်စုကို  ရွေးပါ',
+                'ne' => 'मान्छेहरूको समूह छान्नुहोस्'
+            ],
+            'choose_faith_milestones' => [
+                'en' => 'Choose faith milestones',
+                'mm' => 'ယုံကြည်ခြင်းမှတ်တိုင်များကို ရွေးချယ်ပါ',
+                'ne' => 'विश्वासका कोसेढुङ्गाहरू छनौट गर्नुहोस्'
+
+            ],
+            'choose_baptized_by' => [
+                'en' => 'Choose baptized by',
+                'mm' => 'နှစ်ခြင်းပေးသူကို ရွေးပါ',
+                'ne' =>  'द्वारा बप्तिस्मा छान्नुहोस्'
+            ],
+            'choose_baptism_date' => [
+                'en' => 'Choose baptism date',
+                'mm' => 'ဗတ္တိဇံခံယူသည့်ရက်',
+                'ne' => 'बप्तिस्मा मिति छान्नुहोस्'
+            ],
+            'enter_name' => [
+                'en' => 'Enter name',
+                'mm' => 'နာမည်ထည့်ပါ',
+                'ne' =>  'नाम प्रविष्ट गर्नुहोस्'
+            ],
+            'enter_nickname' => [
+                'en' => 'Enter nickname',
+                'mm' => 'အိမ်ခေါ်အမည်ထည့်ပါ',
+                'ne' => 'उपनाम प्रविष्ट गर्नुहोस्'
+            ],
+            'enter_new_value' => [
+                'en' => 'Enter new value',
+                'mm' => 'တန်ဖိုးအသစ်ထည့်ပါ',
+                'ne' => 'नयाँ मान प्रविष्ट गर्नुहोस्'
+            ],
+            'value' => [
+                'en' => 'Value',
+                'mm' => 'တန်ဖိုး',
+                'ne' => 'मूल्य'
+            ],
+            'age_group' => [
+                'en' => 'Age group',
+                'mm' =>  'အသက်အရွယ်အုပ်စု',
+                'ne' => 'उमेर समूह'
+            ],
+            'choose_age_group' => [
+                'en' => 'Choose age group',
+                'mm' => 'အသက်အရွယ်အုပ်စု ရွေးချယ်ပါ',
+                'ne' => 'उमेर समूह छान्नुहोस्'
+            ],
+            'select_location' => [
+                'en' => 'Select location',
+                'mm' => 'တည်နေရာကို ရွေးချယ်ပါ',
+                'ne' => 'स्थान चयन गर्नुहोस्'
+            ],
+            'submit' => [
+                'en' => 'Submit',
+                'mm' => 'သိမ်ဆည်းရန်',
+                'ne' => 'पेश गर्नुहोस्'
+            ],
+            'select_community' => [
+                'en' => 'Select community',
+                'mm' => 'အသိုင်းအဝိုင်းရွေးချယ်ပါ',
+                'ne' => 'समुदाय चयन गर्नुहोस्'
+            ],
+            'church_description' => [
+                'en' => 'Church description',
+                'mm' => 'ဘုရားကျောင်း အသေးစိတ်',
+                'ne' => 'चर्चको विवरण'
+            ],
+            'enter_church_description' => [
+                'en' => 'Enter church description',
+                'mm' => 'ဘုရားကျောင်းအသေးစိတ်ထည်ပါ',
+                'ne' => 'चर्च विवरण प्रविष्ट गर्नुहोस्'
+            ],
+            'select_parent_church' => [
+                'en' => 'Select parent church',
+                'mm' => 'မိခင်ဘုရားကျောင်းကို ရွေးချယ်ပါ',
+                'ne' => 'अभिभावक चर्च छान्नुहोस्'
+            ],
+            'select_date' => [
+                'en' => 'Select date',
+                'mm' => 'နေ့ရက်ရွေးပါ',
+                'ne' => 'मिति चयन गर्नुहोस्'
+            ],
+            'select_church_denomination' => [
+                'en' => 'Select church denomination',
+                'mm' => 'ဂိုဏ်းခွဲရွေးချယ်ပါ',
+                'ne' => 'चर्च सम्प्रदाय छान्नुहोस्'
+            ],
 
         ];
 
