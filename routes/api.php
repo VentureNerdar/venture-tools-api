@@ -1,21 +1,23 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ChurchController;
-use App\Http\Controllers\CommunicationPlatformController;
-use App\Http\Controllers\CommunityChecklistController;
-use App\Http\Controllers\CommunityController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\DenominationController;
-use App\Http\Controllers\FaithMilestoneController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\PeopleGroupController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SystemLanguageController;
-use App\Http\Controllers\SystemLanguageWordController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\{
+    AuthController,
+    ChurchController,
+    CommunicationPlatformController,
+    CommunityChecklistController,
+    CommunityController,
+    ContactController,
+    DenominationController,
+    FaithMilestoneController,
+    NotificationController,
+    PeopleGroupController,
+    ProfileController,
+    SettingController,
+    SystemLanguageController,
+    SystemLanguageWordController,
+    UserController,
+    UserRoleController
+};
 use App\Models\Community;
 use Illuminate\Support\Facades\Route;
 
@@ -35,12 +37,22 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [UserController::class, 'create'])->name('user.create');
         Route::get('/list', [UserController::class, 'list'])->name('user.list');
 
+        // Device management routes
+
         Route::prefix('id/{id}')->group(function () {
             Route::put('/', [UserController::class, 'update'])->name('user.update');
             Route::get('/', [UserController::class, 'view'])->name('user.view');
             Route::delete('/', [UserController::class, 'delete'])->name('user.delete');
             Route::delete('trash', [UserController::class, 'trash'])->name('user.trash');
             Route::post('restore', [UserController::class, 'restore'])->name('user.restore');
+
+            Route::prefix('/devices')->group(function () {
+                Route::get('/', [UserController::class, 'getDevices'])->name('user.devices');
+                Route::post('/', [UserController::class, 'registerDevice'])->name('user.registerDevice');
+                Route::delete('/{device_id}', [UserController::class, 'removeDevice'])->name('user.removeDevice');
+                Route::delete('/', [UserController::class, 'removeOtherDevices'])->name('user.removeOtherDevices');
+                Route::put('/{device_id}', [UserController::class, 'updateDevice'])->name('user.updateDevice');
+            });
         });
 
         // USER ROLE
@@ -226,6 +238,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [NotificationController::class, 'browse'])->name('notification.browse');
         Route::post('/', [NotificationController::class, 'create'])->name('notification.create');
         Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notification.sendNotification');
+
+        // Token management routes
+        Route::post('/register-token', [NotificationController::class, 'registerToken'])->name('notification.registerToken');
+        Route::delete('/remove-token/{token}', [NotificationController::class, 'removeToken'])->name('notification.removeToken');
+        Route::delete('/remove-device/{device_id}', [NotificationController::class, 'removeDevice'])->name('notification.removeDevice');
+        Route::get('/my-tokens', [NotificationController::class, 'getTokens'])->name('notification.getTokens');
+
         Route::prefix('id/{id}')->group(function () {
             Route::put('/', [NotificationController::class, 'update'])->name('notification.update');
         });

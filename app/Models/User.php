@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     protected function updatedAt(): Attribute
     {
-        return Attribute::get(fn ($value) => $value ? Carbon::parse($value)->format('d M Y H:i:s') : null);
+        return Attribute::get(fn($value) => $value ? Carbon::parse($value)->format('d M Y H:i:s') : null);
     }
 
     public function role()
@@ -84,5 +84,15 @@ class User extends Authenticatable
     public function churches()
     {
         return $this->hasMany(Church::class);
+    }
+
+    public function plantedChurch()
+    {
+        return $this->hasMany(ChurchPlanter::class);
+    }
+
+    public function devices()
+    {
+        return $this->hasMany(UserDevice::class);
     }
 }

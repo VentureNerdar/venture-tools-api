@@ -6,6 +6,7 @@ use App\Models\ChurchPlanter;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\UserDevice;
 
 class AuthController extends Controller
 {
@@ -59,12 +60,16 @@ class AuthController extends Controller
         return response()->json($response, 200);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
+        $user = $request->user();
+        UserDevice::where('user_id', $user->id)
+            ->where('device_id', $request->device_id)
+            ->forceDelete();
+        $user->tokens()->delete();
 
         $response = [
-            'message' => 'logged out',
+            'message' => 'logged out'
         ];
 
         return response($response);
@@ -75,7 +80,7 @@ class AuthController extends Controller
         $user = $request->user();
 
         // get planted church
-        $church = ChurchPlanter::whereHas('user', function ($query) use ($user) {
+        $user->plantedChurch = ChurchPlanter::whereHas('user', function ($query) use ($user) {
             $query->where('id', $user->id);
         })
             ->with(['church'])
@@ -86,7 +91,7 @@ class AuthController extends Controller
             ->unique('id')
             ->values();
 
-        $user->plantedChurch = $church;
+        $user->load('devices');
 
         return response()->json($user, 200);
     }

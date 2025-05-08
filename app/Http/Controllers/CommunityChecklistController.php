@@ -22,12 +22,12 @@ class CommunityChecklistController extends Controller
 
     public function create(CommunityChecklistRequest $request)
     {
-        return response()->json(...$this->service->save($this->model, null, $request->all()));
+        return response()->json(...$this->service->save($this->model, null, $request->validated()));
     }
 
     public function update(CommunityChecklistRequest $request, $id)
     {
-        return response()->json(...$this->service->save($this->model, $id, $request->all()));
+        return response()->json(...$this->service->save($this->model, $id, $request->validated()));
     }
 
     public function browse(Request $request)

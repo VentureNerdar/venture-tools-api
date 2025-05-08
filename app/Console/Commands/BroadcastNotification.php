@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Events\NotificationEvent;
+use App\Models\Setting;
+use App\Models\UserDevice;
 use App\Services\FirebaseService;
 use Illuminate\Console\Command;
 
@@ -20,26 +22,52 @@ class BroadcastNotification extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send notifications to Church Planters';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        // broadcast(new NotificationEvent('⏰ Ping from Laravel!'));
-        // $message = 'Scheduled notification sent at ' . now();
+        try {
+            // Get notification settings
+            $settings = Setting::where('name', 'notification_interval')->first();
+            if (!$settings) {
+                $this->error('Notification settings not found');
+                return;
+            }
 
-        // broadcast(new NotificationEvent($message))->toOthers();
+            $value = json_decode($settings->value, true);
+            if (!isset($value['enabled']) || !$value['enabled']) {
+                $this->info('Notifications are disabled');
+                return;
+            }
 
-        // 🔁 Optionally send push via Firebase
-        $fcm = app(FirebaseService::class);
-        $targetToken = 'e7OOAOou5pE4D98eYU-Ady:APA91bFVGcmYE5S_MMRgVRbvwtwHFN6c1HmLx2pxMTJ5i-AYEMvsXezan5uyytJawuNVBwo4G1aKZnKg8I9Wet5NHlR6pnNMZ-PU2_fITqQ_aCz_UrgUUv0'; // load token(s) from DB or config
-        $title = 'Testing Title';
-        $body = 'Testing Message';
-        $fcm->sendNotification($targetToken, $title, $body, []);
+            // Get all Church Planters' device tokens
+            $tokens = UserDevice::whereHas('user', function ($query) {
+                $query->where('user_role_id', 4);
+            })
+                ->whereNotNull('notification_token')
+                ->pluck('notification_token')
+                ->toArray();
 
-        $this->info('Notification broadcasted and FCM sent.');
-        //
+            if (empty($tokens)) {
+                $this->info('No Church Planters with notification tokens found');
+                return;
+            }
+
+            // Send to all tokens at once using FCM multicast
+            $fcm = app(FirebaseService::class);
+            $result = $fcm->sendMulticast(
+                $tokens,
+                $value['title'] ?? 'Scheduled Notification',
+                $value['notificationMessage'] ?? 'This is a scheduled notification',
+                []
+            );
+
+            $this->info("Notifications sent successfully. Success: {$result['success']}, Failed: {$result['failure']}");
+        } catch (\Exception $e) {
+            $this->error('Failed to send notifications: ' . $e->getMessage());
+        }
     }
 }

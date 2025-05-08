@@ -36,7 +36,7 @@ class ContactController extends Controller
 
     public function create(ContactRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         if (isset($data['baptism_date']) && is_numeric($data['baptism_date'])) {
             // Dividing by 1000 to convert milliseconds to seconds
@@ -50,7 +50,7 @@ class ContactController extends Controller
 
         $contact->peopleGroup()->sync($data['people_group'] ?? []);
 
-        $contactCommunicationPlatforms = $request->input('contact_communication_platforms', []);
+        $contactCommunicationPlatforms = $data['contact_communication_platforms'] ?? [];
 
         foreach ($contactCommunicationPlatforms as $platformData) {
             ContactCommunicationPlatform::create([
@@ -67,7 +67,7 @@ class ContactController extends Controller
 
     public function update(ContactRequest $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         if (isset($data['baptism_date']) && is_numeric($data['baptism_date'])) {
             // Dividing by 1000 to convert milliseconds to seconds
@@ -80,8 +80,7 @@ class ContactController extends Controller
         $contact->faithMilestones()->sync($data['faith_milestones'] ?? []);
         $contact->peopleGroup()->sync($data['people_group'] ?? []);
 
-        // $contactCommunicationPlatforms = $request->only(['contact_communication_platforms']);
-        $contactCommunicationPlatforms = $request->input('contact_communication_platforms', []);
+        $contactCommunicationPlatforms = $data['contact_communication_platforms'] ?? [];
         $contact->contactCommunicationPlatforms()->delete();
         foreach ($contactCommunicationPlatforms as $platformData) {
             ContactCommunicationPlatform::create([

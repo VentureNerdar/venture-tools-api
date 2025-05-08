@@ -21,6 +21,7 @@ class CommunityFactory extends Factory
             'location_longitude' => $this->faker->longitude,
             'location_latitude' => $this->faker->latitude,
             'conducted_survey_of_community_needs' => $this->faker->boolean,
+            'created_by' => 4,
             'community_needs_1' => $this->faker->sentence,
             'community_needs_2' => $this->faker->sentence,
             'community_needs_3' => $this->faker->sentence,

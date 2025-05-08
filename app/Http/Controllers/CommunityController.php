@@ -7,6 +7,7 @@ use App\Http\Requests\ListRequest;
 use App\Models\Community;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -22,20 +23,23 @@ class CommunityController extends Controller
 
     public function create(CommunityRequest $request)
     {
-        $community = $this->service->save($this->model, null, $request->all())[0];
+        $data = $request->validated();
+        $community = $this->service->save($this->model, null, $request->validated())[0];
 
         // checklists
-        $checklists = $request->input('checklists', []);
+        $checklists = $data['checklists'] ?? [];
         $community->checklists()->sync($checklists);
 
         // Sync Peace Persons
-        $peacePersons = $request->input('peace_persons', []);
+        // $peacePersons = $request->input('peace_persons', []);
+        $peacePersons = $data['peace_persons'] ?? [];
         if (! empty($peacePersons)) {
             $community->peacePersons()->createMany($peacePersons);
         }
 
         // Sync Committees (HasMany)
-        $committees = $request->input('committees', []);
+        $committees = $data['committees'] ?? [];
+        // $committees = $request->input('committees', []);
         if (! empty($committees)) {
             $community->committees()->createMany($committees);
         }
@@ -47,14 +51,17 @@ class CommunityController extends Controller
 
     public function update(CommunityRequest $request, $id)
     {
-        $community = $this->service->save($this->model, $id, $request->all())[0];
+        $data = $request->validated();
+        $community = $this->service->save($this->model, $id, $data)[0];
 
         // checklists
-        $checklists = $request->input('checklists', []);
+        $checklists = $data['checklists'] ?? [];
+        // $checklists = $request->input('checklists', []);
         $community->checklists()->sync($checklists);
 
         // peace persons
-        $peacePersons = $request->input('peace_persons', []);
+        $peacePersons = $data['peace_persons'] ?? [];
+        // $peacePersons = $request->input('peace_persons', []);
 
         $existingIds = $community->peacePersons()->pluck('id')->toArray();
         $incomingIds = collect($peacePersons)->pluck('id')->filter()->toArray();
@@ -71,7 +78,7 @@ class CommunityController extends Controller
         }
 
         // Create new
-        $newPersons = collect($peacePersons)->filter(fn ($p) => empty($p['id']))->values()->all();
+        $newPersons = collect($peacePersons)->filter(fn($p) => empty($p['id']))->values()->all();
         if (! empty($newPersons)) {
             $community->peacePersons()->createMany($newPersons);
         }
@@ -83,7 +90,8 @@ class CommunityController extends Controller
         }
 
         // committees
-        $committees = $request->input('committees', []);
+        $committees = $data['committees'] ?? [];
+        // $committees = $request->input('committees', []);
 
         $existingIds = $community->committees()->pluck('id')->toArray();
         $incomingIds = collect($committees)->pluck('id')->filter()->toArray();
@@ -98,7 +106,7 @@ class CommunityController extends Controller
         }
 
         // Create new
-        $newCommittees = collect($committees)->filter(fn ($c) => empty($c['id']))->values()->all();
+        $newCommittees = collect($committees)->filter(fn($c) => empty($c['id']))->values()->all();
         if (! empty($newCommittees)) {
             $community->committees()->createMany($newCommittees);
         }
@@ -116,6 +124,19 @@ class CommunityController extends Controller
 
     public function browse(Request $request)
     {
+        $user = Auth::user();
+        $existingWhere = $request->has('where') ? json_decode($request->where, true) : [];
+        if ($user->user_role_id == 4) {
+            $existingWhere[] = [
+                'key' => 'created_by',
+                'value' => $user->id,
+            ];
+
+            $request->merge([
+                'where' => json_encode($existingWhere)
+            ]);
+        }
+
         [$communities, $status] = $this->service->browse($this->model, $request);
 
         foreach ($communities as $community) {
