@@ -25,6 +25,7 @@ class CommunityRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'location_longitude' => ['nullable', 'numeric', 'between:-180,180'],
             'location_latitude' => ['nullable', 'numeric', 'between:-90,90'],
+            'created_by' => ['required', 'integer']
         ];
     }
 }

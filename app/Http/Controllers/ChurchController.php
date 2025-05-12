@@ -100,4 +100,23 @@ class ChurchController extends Controller
     {
         return $this->service->browse($this->model, null, $id);
     }
+
+    public function createChurchPlanters(Request $request)
+    {
+        $request->validate([
+            'church_id' => 'required|exists:churches,id',
+            'church_planters' => 'required|array',
+            'church_planters.*' => 'required|exists:users,id'
+        ]);
+
+        $churchPlanters = [];
+        foreach ($request->church_planters as $userId) {
+            $churchPlanters[] = ChurchPlanter::create([
+                'church_id' => $request->church_id,
+                'user_id' => $userId
+            ]);
+        }
+
+        return response()->json($churchPlanters, 201);
+    }
 }

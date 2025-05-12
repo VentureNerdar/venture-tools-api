@@ -180,6 +180,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [ChurchController::class, 'browse'])->name('church.browse');
         Route::post('/', [ChurchController::class, 'create'])->name('church.create');
         Route::get('/list', [ChurchController::class, 'list'])->name('church.list');
+        Route::post('/planters', [ChurchController::class, 'createChurchPlanters'])->name('church.planters.create');
 
         Route::prefix('id/{id}')->group(function () {
             Route::put('/', [ChurchController::class, 'update'])->name('church.update');

@@ -1540,7 +1540,131 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ဂိုဏ်းခွဲရွေးချယ်ပါ',
                 'ne' => 'चर्च सम्प्रदाय छान्नुहोस्'
             ],
-
+            'search_for_a_palce_here' => [
+                'en' => 'Search for a place here : ',
+                'mm' => 'တည်နေရာကို ရွေးချယ်ပါ : ',
+                'ne' => 'यहाँ ठाउँ खोज्नुहोस् : '
+            ],
+            'notification' => [
+                'en' => 'Notification',
+                'mm' => 'အသိပေးချက်',
+                'ne' => 'सूचना'
+            ],
+            'manage_notifications' => [
+                'en' => 'Manage Notifications',
+                'mm' => 'အသိပေးချက်များကို စီမံပါ',
+                'ne' => 'सूचना व्यवस्थापन गर्नुहोस्'
+            ],
+            'status' => [
+                'en' => 'Status',
+                'mm' => 'အခြေအနေ',
+                'ne' => 'स्थिति'
+            ],
+            'enable_notification' => [
+                'en' => 'Enable Notification',
+                'mm' => 'အသိပေးချက်ကို ဖွင့်ရန်',
+                'ne' => 'सूचना सक्षम पार्नुहोस्'
+            ],
+            'interval' => [
+                'en' => 'Interval',
+                'mm' => 'အချိန်အပိုင်းအခြား',
+                'ne' => 'अन्तराल'
+            ],
+            'how_often_should_the_notifications_be_sent' => [
+                'en' => 'How often should the notifications be sent?',
+                'mm' => 'အသိပေးချက်များကို ဘယ်လိုအချိန်ကို ပို့မလဲ?',
+                'ne' => 'सूचनाहरू कति पटक पठाउनुपर्छ?'
+            ],
+            'once_every' => [
+                'en' => 'Once every',
+                'mm' => 'အကြိမ်',
+                'ne' => 'प्रत्येक पटक'
+            ],
+            'please_select_unit' => [
+                'en' => 'Please select unit',
+                'mm' => 'အချိန်အပိုင်းအခြားကို ရွေးချယ်ပါ',
+                'ne' => 'कृपया एकाइ चयन गर्नुहोस्'
+            ],
+            'message' => [
+                'en' => 'Message',
+                'mm' =>  'သတင်းစကား',
+                'ne' => 'सन्देश'
+            ],
+            'please_enter_a_number' => [
+                'en' => 'Please enter a nubmer',
+                'mm' => 'နံပါတ်တစ်ခုထည့်ပါ',
+                'ne' => 'कृपया नम्बर प्रविष्ट गर्नुहोस्'
+            ],
+            'select_day' => [
+                'en' => 'Select day',
+                'mm' => 'နေ့ရက်ကိုရွေးပါ',
+                'ne' => 'दिन चयन गर्नुहोस्'
+            ],
+            'at_what_time' =>  [
+                'en' => 'At what time?',
+                'mm' =>  'ဘယ်အချိန်မှာ ပို့မှာလဲ',
+                'ne' => 'कति बजे?'
+            ],
+            'hour' => [
+                'en' => 'Hour',
+                'mm' => 'နာရီ',
+                'ne' => 'घण्टा'
+            ],
+            'minute' => [
+                'en' => 'Minute',
+                'mm' => 'မိနစ်',
+                'ne' => 'मिनेट'
+            ],
+            'am_pm' => [
+                'en' => 'AM/PM',
+                'mm' => 'မနက်/ည',
+                'ne' => 'बिहान/बेलुका'
+            ],
+            'enter_the_message_title_in_english' => [
+                'en' => 'Enter the message title in English',
+                'mm' => 'အသိပေးချက်ခေါင်းစဉ်ကို အင်္ဂလိပ်စာဖြင့် ဖြည့်ပါ',
+                'ne' => 'सन्देशको शीर्षक अंग्रेजीमा प्रविष्ट गर्नुहोस्।'
+            ],
+            'enter_the_message_title_in_myanmar' => [
+                'en' => 'Enter the message title in Myanamr',
+                'mm' => 'အသိပေးချက်ခေါင်းစဉ်ကို မြန်မာစာဖြင့် ဖြည့်ပါ',
+                'ne' => 'म्यानमारमा सन्देश शीर्षक प्रविष्ट गर्नुहोस्'
+            ],
+            'enter_the_message_title_in_nepali' => [
+                'en' => 'Enter the message title in Nepali',
+                'mm' => 'အသိပေးချက်ခေါင်းစဉ်ကို နီပေါစာဖြင့် ဖြည့်ပါ',
+                'ne' => 'सन्देशको शीर्षक नेपालीमा प्रविष्ट गर्नुहोस्।'
+            ],
+            'enter_the_message_body_in_english' => [
+                'en' => 'Enter the message body in English',
+                'mm' => 'အသိပေးချက်စာကိုယ်ကို အင်္ဂလိပ်စာဖြင့် ဖြည့်ပါ',
+                'ne' => 'सन्देशको मुख्य भाग अंग्रेजीमा प्रविष्ट गर्नुहोस्।'
+            ],
+            'enter_the_message_body_in_myanmar' => [
+                'en' => 'Enter the message body in Myanamr',
+                'mm' => 'အသိပေးချက်စာကိုယ်ကို မြန်မာစာဖြင့် ဖြည့်ပါ',
+                'ne' => 'म्यानमारमा सन्देशको मुख्य भाग प्रविष्ट गर्नुहोस्।'
+            ],
+            'enter_the_message_body_in_nepali' => [
+                'en' => 'Enter the message body in Nepali',
+                'mm' => 'အသိပေးချက်စာကိုယ်ကို နီပေါစာဖြင့် ဖြည့်ပါ',
+                'ne' => 'सन्देशको शीर्षक नेपालीमा प्रविष्ट गर्नुहोस्।'
+            ],
+            'english' => [
+                'en' => 'English',
+                'mm' => 'အင်္ဂလိပ်',
+                'ne' => 'अंग्रेजी'
+            ],
+            'nepali' => [
+                'en' => 'Neapli',
+                'mm' => 'နီပေါ',
+                'ne' => 'नेपाली'
+            ],
+            'myanmar' => [
+                'en' => 'Myanmar',
+                'mm' => 'မြန်မာ',
+                'ne' => 'म्यानमार'
+            ]
         ];
 
         foreach ($words as $word => $translations) {
