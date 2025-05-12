@@ -1678,7 +1678,7 @@ class TranslationSeeder extends Seeder
         foreach ($langs as $lang) {
             // if ($lang->locale !== 'ne') {
             foreach ($words as $word => $translations) {
-                SystemLanguageTranslation::create([
+                SystemLanguageTranslation::firstOrCreate([
                     'system_language_id' => $lang->id,
                     'system_language_word_id' => \App\Models\SystemLanguageWord::where('word', $word)->first()->id,
                     'translation' => $translations[$lang->locale]
