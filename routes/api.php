@@ -1,23 +1,21 @@
 <?php
 
-use App\Http\Controllers\{
-    AuthController,
-    ChurchController,
-    CommunicationPlatformController,
-    CommunityChecklistController,
-    CommunityController,
-    ContactController,
-    DenominationController,
-    FaithMilestoneController,
-    NotificationController,
-    PeopleGroupController,
-    ProfileController,
-    SettingController,
-    SystemLanguageController,
-    SystemLanguageWordController,
-    UserController,
-    UserRoleController
-};
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChurchController;
+use App\Http\Controllers\CommunicationPlatformController;
+use App\Http\Controllers\CommunityChecklistController;
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DenominationController;
+use App\Http\Controllers\FaithMilestoneController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PeopleGroupController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SystemLanguageController;
+use App\Http\Controllers\SystemLanguageWordController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRoleController;
 use App\Models\Community;
 use Illuminate\Support\Facades\Route;
 
@@ -94,6 +92,14 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::delete('trash', [SystemLanguageWordController::class, 'trash'])->name('language_word.trash');
             });
         }); // e.o WORDS
+
+        Route::prefix('translations')->group(function () {
+            Route::post('/', [SystemLanguageController::class, 'createTranslation'])
+                ->name('language.create_translation');
+
+            Route::put('/{id}', [SystemLanguageController::class, 'updateTranslation'])
+                ->name('language.update_translation');
+        });
     }); // e.o LANGUAGES
 
     // PEOPLE GROUPS

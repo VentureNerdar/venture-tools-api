@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class SystemLanguageTranslation extends Model
 {
-    //
     protected $fillable = [
         'translation',
         'system_language_id',
-        'system_language_word_id'
+        'system_language_word_id',
     ];
 
     public function language()

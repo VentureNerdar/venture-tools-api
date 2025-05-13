@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SystemLanguageRequest;
+use App\Http\Requests\SystemLanguageTranslationRequest;
 use App\Models\SystemLanguage;
-use Illuminate\Http\Request;
+use App\Models\SystemLanguageTranslation;
 use App\Services\CRUDService;
+use Illuminate\Http\Request;
 
 class SystemLanguageController extends Controller
 {
     //
     protected $service;
+
     protected $model;
 
     public function __construct(CRUDService $service)
@@ -21,12 +24,12 @@ class SystemLanguageController extends Controller
 
     public function create(SystemLanguageRequest $request)
     {
-        return response()->json(...$this->service->save($this->model, null, $request->all()));
+        return response()->json(...$this->service->save($this->model, null, $request->validated()));
     }
 
     public function update(SystemLanguageRequest $request, $id)
     {
-        return response()->json(...$this->service->save($this->model, $id, $request->all()));
+        return response()->json(...$this->service->save($this->model, $id, $request->validated()));
     }
 
     public function browse(Request $request)
@@ -47,5 +50,21 @@ class SystemLanguageController extends Controller
     public function delete($id)
     {
         return response()->json(...$this->service->delete($this->model, $id));
+    }
+
+    public function createTranslation(SystemLanguageTranslationRequest $request)
+    {
+        $translation = SystemLanguageTranslation::create($request->validated());
+
+        return response()->json($translation, 201);
+    }
+
+    public function updateTranslation(SystemLanguageTranslationRequest $request, $id)
+    {
+        $translation = SystemLanguageTranslation::findOrFail($id);
+
+        $translation->update($request->validated());
+
+        return response()->json($translation, 200);
     }
 }

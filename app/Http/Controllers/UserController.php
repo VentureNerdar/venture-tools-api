@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeviceRequest;
 use App\Http\Requests\ListRequest;
-use Illuminate\Http\Request;
-use App\Services\CRUDService;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use App\Http\Requests\DeviceRequest;
+use App\Services\CRUDService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as RequestFacade;
 
 class UserController extends Controller
 {
     protected $service;
+
     protected $model;
 
     public function __construct(CRUDService $service)
@@ -39,6 +40,7 @@ class UserController extends Controller
     public function list(ListRequest $request)
     {
         $data = $request->validated();
+
         return response()->json(...$this->service->list($this->model, $data['labelOption'] ?? null, $data['limit'] ?? 10));
     }
 
@@ -101,7 +103,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $currentDeviceId = $request->header('X-Device-ID');
 
-        if (!$currentDeviceId) {
+        if (! $currentDeviceId) {
             return response()->json(['message' => 'Current device ID is required'], 400);
         }
 
@@ -126,12 +128,12 @@ class UserController extends Controller
             'device_type' => $data['device_type'],
             'notification_token' => $data['notification_token'] ?? $device->notification_token,
             'last_ip_address' => $data['last_ip_address'] ?? RequestFacade::ip(),
-            'last_active_at' => now()
+            'last_active_at' => now(),
         ]);
 
         return response()->json([
             'message' => 'Device updated successfully',
-            'device' => $device
+            'device' => $device,
         ]);
     }
 
@@ -153,7 +155,7 @@ class UserController extends Controller
                 'device_type' => $data['device_type'],
                 'notification_token' => $data['notification_token'] ?? null,
                 'last_ip_address' => $data['last_ip_address'] ?? RequestFacade::ip(),
-                'last_active_at' => now()
+                'last_active_at' => now(),
             ]);
         } else {
             // Create new device
@@ -163,13 +165,13 @@ class UserController extends Controller
                 'device_type' => $data['device_type'],
                 'notification_token' => $data['notification_token'] ?? null,
                 'last_ip_address' => $data['last_ip_address'] ?? RequestFacade::ip(),
-                'last_active_at' => now()
+                'last_active_at' => now(),
             ]);
         }
 
         return response()->json([
             'message' => 'Device registered successfully',
-            'device' => $device
+            'device' => $device,
         ], 201);
     }
 }
