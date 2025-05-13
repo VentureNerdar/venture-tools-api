@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name', 500)->index();
             $table->decimal('location_longitude', 10, 7)->nullable();
             $table->decimal('location_latitude', 10, 7)->nullable();
+            $table->json('google_location_data')->nullable();
             $table->boolean('conducted_survey_of_community_needs')->default(false);
             $table->foreignIdFor(User::class, 'created_by')->nullable();
             $table->text('community_needs_1')->nullable();

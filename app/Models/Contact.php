@@ -30,12 +30,12 @@ class Contact extends Model
     ];
 
     protected $dates = [
-        'baptism_date',
+        // 'baptism_date',
     ];
 
     protected $casts = [
         // 'baptism_date' => 'date',
-        'baptism_date' => 'timestamp',
+        // 'baptism_date' => 'timestamp',
         'age' => AgeGroup::class,
     ];
 

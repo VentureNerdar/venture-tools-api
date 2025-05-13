@@ -15,6 +15,7 @@ class Community extends Model
         'name',
         'location_longitude',
         'location_latitude',
+        'google_location_data',
         'conducted_survey_of_community_needs',
         'community_needs_1',
         'community_needs_2',

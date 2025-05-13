@@ -23,6 +23,9 @@ return new class extends Migration
 
             $table->string('name', 300)->index();
             $table->text('description')->nullable();
+            $table->decimal('location_longitude', 10, 7)->nullable();
+            $table->decimal('location_latitude', 10, 7)->nullable();
+            $table->json('google_location_data')->nullable();
             $table->date('founded_at')->nullable();
             $table->string('phone_number', 300)->nullable();
             $table->string('website', 300)->nullable();
