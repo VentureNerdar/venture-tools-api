@@ -1664,6 +1664,11 @@ class TranslationSeeder extends Seeder
                 'en' => 'Myanmar',
                 'mm' => 'မြန်မာ',
                 'ne' => 'म्यानमार'
+            ],
+            'destroy' => [
+                'en' => 'Destroy',
+                'mm' => 'ဖျက်ရန်',
+                'ne' => 'नष्ट गर्नुहोस्'
             ]
         ];
 
