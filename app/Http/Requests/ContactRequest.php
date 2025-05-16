@@ -35,6 +35,11 @@ class ContactRequest extends FormRequest
             'faith_status_id' => 'required|exists:statuses,id',
             'assigned_to' => 'nullable|exists:users,id',
             'coached_by' => 'nullable|exists:contacts,id',
+            'people_group' => 'nullable|array',
+            'contact_communication_platforms' => 'nullable|array',
+            'faith_milestones' => 'nullable|array',
+
+
 
             // 'denomination_id' => 'required|exists:denominations,id',
             // 'faith_milestone_id' => 'required|exists:faith_milestones,id',

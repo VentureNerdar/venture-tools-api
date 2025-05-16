@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRoleRequest extends FormRequest
 {
@@ -23,7 +24,13 @@ class UserRoleRequest extends FormRequest
     {
 
         return [
-            'name' => 'required|string|max:255|unique:user_roles,name,',
+            // 'name' => 'required|string|max:255|unique:user_roles,name,',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('user_roles', 'name')->ignore($this->route('id'))
+            ],
             'label' => 'required|string|max:255',
             'description' => 'nullable|string',
         ];

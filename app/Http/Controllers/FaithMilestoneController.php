@@ -56,15 +56,6 @@ class FaithMilestoneController extends Controller
             'id'   => 'nullable|exists:faith_milestones,id'
         ]);
 
-        $faithMilestone = FaithMilestone::find($request->id);
-
-        if ($faithMilestone) {
-            $oldIconPath = public_path($faithMilestone->icon);
-            if (file_exists($oldIconPath)) {
-                unlink($oldIconPath);
-            }
-        }
-
         $destinationPath = public_path('images/icons/faith-milestones');
 
         if (!file_exists($destinationPath)) {
@@ -72,10 +63,22 @@ class FaithMilestoneController extends Controller
         }
 
         $imageName = 'fm-' . time() . '.' . $request->icon->extension();
-
         $request->icon->move($destinationPath, $imageName);
-        $faithMilestone->update(['icon' => 'images/icons/faith-milestones/' . $imageName]);
 
-        return response()->json(['icon' => 'images/icons/faith-milestones/' . $imageName]);
+        $iconPath = 'images/icons/faith-milestones/' . $imageName;
+
+        // Update icon if FaithMilestone exists
+        if ($request->filled('id')) {
+            $faithMilestone = FaithMilestone::find($request->id);
+            if ($faithMilestone) {
+                // Remove old icon if exists
+                if ($faithMilestone->icon && file_exists(public_path($faithMilestone->icon))) {
+                    unlink(public_path($faithMilestone->icon));
+                }
+                $faithMilestone->update(['icon' => $iconPath]);
+            }
+        }
+
+        return response()->json(['icon' => $iconPath]);
     }
 }

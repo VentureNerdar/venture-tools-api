@@ -47,7 +47,7 @@ class UserRequest extends FormRequest
             'is_active' => 'required|boolean',
             'biography' => 'nullable|string',
             'last_login_at' => 'nullable|date',
-            'preferred_language_id' => 'required|exists:system_languages,id',
+            'preferred_language_id' => 'nullable|exists:system_languages,id',
         ];
     }
 }
