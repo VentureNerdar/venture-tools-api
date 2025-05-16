@@ -55,13 +55,13 @@ class CommunityController extends Controller
         $community = $this->service->save($this->model, $id, $data)[0];
 
         // checklists
-        $checklists = $data['checklists'] ?? [];
-        // $checklists = $request->input('checklists', []);
+        // $checklists = $data['checklists'] ?? [];
+        $checklists = $request->input('checklists', []);
         $community->checklists()->sync($checklists);
 
         // peace persons
-        $peacePersons = $data['peace_persons'] ?? [];
-        // $peacePersons = $request->input('peace_persons', []);
+        // $peacePersons = $data['peace_persons'] ?? [];
+        $peacePersons = $request->input('peace_persons', []);
 
         $existingIds = $community->peacePersons()->pluck('id')->toArray();
         $incomingIds = collect($peacePersons)->pluck('id')->filter()->toArray();
@@ -78,7 +78,7 @@ class CommunityController extends Controller
         }
 
         // Create new
-        $newPersons = collect($peacePersons)->filter(fn($p) => empty($p['id']))->values()->all();
+        $newPersons = collect($peacePersons)->filter(fn ($p) => empty($p['id']))->values()->all();
         if (! empty($newPersons)) {
             $community->peacePersons()->createMany($newPersons);
         }
@@ -106,7 +106,7 @@ class CommunityController extends Controller
         }
 
         // Create new
-        $newCommittees = collect($committees)->filter(fn($c) => empty($c['id']))->values()->all();
+        $newCommittees = collect($committees)->filter(fn ($c) => empty($c['id']))->values()->all();
         if (! empty($newCommittees)) {
             $community->committees()->createMany($newCommittees);
         }
@@ -133,7 +133,7 @@ class CommunityController extends Controller
             ];
 
             $request->merge([
-                'where' => json_encode($existingWhere)
+                'where' => json_encode($existingWhere),
             ]);
         }
 
