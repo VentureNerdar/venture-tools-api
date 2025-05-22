@@ -1669,7 +1669,12 @@ class TranslationSeeder extends Seeder
                 'en' => 'Destroy',
                 'mm' => 'ဖျက်ရန်',
                 'ne' => 'नष्ट गर्नुहोस्'
-            ]
+            ],
+            'churches_prayers' => [
+                'en' => 'Churches\' Prayers',
+                'mm' => 'ဘုရားကျောင်းများရှိ ဆုတောင်းသူများ',
+                'ne' => 'चर्चहरूको प्रार्थना',
+            ],
         ];
 
         foreach ($words as $word => $translations) {

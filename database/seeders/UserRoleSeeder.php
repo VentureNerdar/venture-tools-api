@@ -11,7 +11,7 @@ class UserRoleSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run() : void
+    public function run(): void
     {
         $roles = [
             [
@@ -25,14 +25,14 @@ class UserRoleSeeder extends Seeder
                 'Developer role',
             ],
             [
-                'administrator',
-                'Administrator',
-                'Administrator role',
+                'movement_leader',
+                'Movement Leader',
+                'Movement Leader role',
             ],
             [
-                'church_planter',
-                'Church Planter',
-                'Church Planter role',
+                'disciple_maker',
+                'Disciple Maker',
+                'Disciple Maker role',
             ],
             [
                 'guest',

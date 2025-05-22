@@ -10,17 +10,25 @@ class StatusSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run() : void
+    public function run(): void
     {
         $statuses = [
             'contact' => [
-                'Active', 'Paused', 'Archived', 'New Contact', 'Not Ready'
+                'Active',
+                'Paused',
+                'Archived',
+                'New Contact',
+                'Not Ready'
             ],
             'group' => [
-                'Active', 'Inactive'
+                'Active',
+                'Inactive'
             ],
             'faith_status' => [
-                'Seeker', 'Believer', 'Leader'
+                'Seeker',
+                'Believer',
+                'Leader',
+                'Disciple'
             ],
         ];
 

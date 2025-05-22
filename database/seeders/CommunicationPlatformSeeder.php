@@ -12,7 +12,7 @@ class CommunicationPlatformSeeder extends Seeder
      */
     public function run(): void
     {
-        $platforms = ['Phone', 'Email', 'Facebook', 'Twitter / X', 'Other Social Links'];
+        $platforms = ['Phone', 'Email', 'Whatsapp'];
 
         foreach ($platforms as $platform) {
             \App\Models\CommunicationPlatform::firstOrCreate([

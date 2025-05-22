@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Movement;
 use App\Models\SystemLanguage;
 use App\Models\UserRole;
 use Illuminate\Database\Migrations\Migration;
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->text('biography')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->foreignIdFor(SystemLanguage::class, 'preferred_language_id')->nullable();
+            $table->foreignIdFor(Movement::class, 'movement_id')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

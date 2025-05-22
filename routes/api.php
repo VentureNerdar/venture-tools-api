@@ -8,6 +8,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DenominationController;
 use App\Http\Controllers\FaithMilestoneController;
+use App\Http\Controllers\MovementController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PeopleGroupController;
 use App\Http\Controllers\ProfileController;
@@ -257,4 +258,19 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
     // e.o NOTIFICATIONS
+
+    // MOVEMENTS
+    Route::prefix('movements')->group(function () {
+        Route::get('/', [MovementController::class, 'browse'])->name('movement.browse');
+        Route::post('/', [MovementController::class, 'create'])->name('movement.create');
+        Route::get('/list', [MovementController::class, 'list'])->name('movements.list');
+
+        Route::prefix('id/{id}')->group(function () {
+            Route::put('/', [MovementController::class, 'update'])->name('movement.update');
+            Route::get('/', [MovementController::class, 'view'])->name('movement.view');
+            Route::delete('/', [MovementController::class, 'delete'])->name('movement.delete');
+            Route::delete('trash', [MovementController::class, 'trash'])->name('movement.trash');
+            Route::post('restore', [MovementController::class, 'restore'])->name('movement.restore');
+        });
+    });
 });

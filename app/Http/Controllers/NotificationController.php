@@ -37,7 +37,9 @@ class NotificationController extends Controller
      */
     public function update(NotificationRequest $request, $id)
     {
-        return response()->json(...$this->crudService->save($this->model, $id, $request->validated()));
+        $result = $this->crudService->save($this->model, $id, $request->validated());
+        cache()->forget('last_notification_run');
+        return response()->json(...$result);
     }
 
     /**
