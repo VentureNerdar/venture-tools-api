@@ -31,6 +31,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('demodemo'),
                 'user_role_id' => $user[2],
+                'movement_id' => random_int(1, 2),
                 'phone_number' => '+66' . random_int(100000000, 999999999),
                 'biography' => $user[3],
             ]);

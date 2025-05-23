@@ -44,6 +44,7 @@ class UserRequest extends FormRequest
                 'confirmed'
             ],
             'user_role_id' => 'required|exists:user_roles,id',
+            'movement_id' => 'nullable|exists:movements,id',
             'is_active' => 'required|boolean',
             'biography' => 'nullable|string',
             'last_login_at' => 'nullable|date',

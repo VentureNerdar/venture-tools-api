@@ -6,6 +6,7 @@ use App\Http\Requests\ContactRequest;
 use App\Http\Requests\ListRequest;
 use App\Models\Contact;
 use App\Models\ContactCommunicationPlatform;
+use App\Models\User;
 use App\Services\CRUDService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -108,6 +109,16 @@ class ContactController extends Controller
 
             $request->merge([
                 'where' => json_encode($existingWhere)
+            ]);
+        } else if ($user->user_role_id == 3) {
+            $movementUsers = User::where('movement_id', $user->movement_id)->get()->pluck('id')->toArray();
+            Log::info('Movement Users:', [$movementUsers]);
+            $request->merge([
+                'where' => json_encode($existingWhere),
+                'whereIn' => json_encode([
+                    'key' => 'assigned_to',
+                    'value' => $movementUsers
+                ])
             ]);
         }
         return response()->json(...$this->service->browse($this->model, $request));

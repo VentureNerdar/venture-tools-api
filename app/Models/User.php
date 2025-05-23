@@ -30,6 +30,7 @@ class User extends Authenticatable
         'email_verified_at',
         'password',
         'user_role_id',
+        'movement_id',
         'is_active',
         'biography',
         'last_login_at',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommunityRequest;
 use App\Http\Requests\ListRequest;
 use App\Models\Community;
+use App\Models\User;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,7 +79,7 @@ class CommunityController extends Controller
         }
 
         // Create new
-        $newPersons = collect($peacePersons)->filter(fn ($p) => empty($p['id']))->values()->all();
+        $newPersons = collect($peacePersons)->filter(fn($p) => empty($p['id']))->values()->all();
         if (! empty($newPersons)) {
             $community->peacePersons()->createMany($newPersons);
         }
@@ -106,7 +107,7 @@ class CommunityController extends Controller
         }
 
         // Create new
-        $newCommittees = collect($committees)->filter(fn ($c) => empty($c['id']))->values()->all();
+        $newCommittees = collect($committees)->filter(fn($c) => empty($c['id']))->values()->all();
         if (! empty($newCommittees)) {
             $community->committees()->createMany($newCommittees);
         }
@@ -134,6 +135,15 @@ class CommunityController extends Controller
 
             $request->merge([
                 'where' => json_encode($existingWhere),
+            ]);
+        } else if ($user->user_role_id == 3) {
+            $movementUsers = User::where('movement_id', $user->movement_id)->get()->pluck('id')->toArray();
+            $request->merge([
+                'where' => json_encode($existingWhere),
+                'whereIn' => json_encode([
+                    'key' => 'created_by',
+                    'value' => $movementUsers
+                ])
             ]);
         }
 

@@ -614,7 +614,7 @@ class TranslationSeeder extends Seeder
                 'ne' =>  'सम्पर्क सिर्जना गर्नुहोस्',
             ],
 
-            // Filters & search 
+            // Filters & search
             'all' => [
                 'en' => 'All',
                 'mm' => 'အားလုံး',
@@ -1043,7 +1043,7 @@ class TranslationSeeder extends Seeder
                 'ne' => 'निर्माणाधीन'
             ],
 
-            // Settings 
+            // Settings
             'manage_user_roles' => [
                 'en' => 'Manage User Roles',
                 'mm' =>  'အသုံးပြုသူအခန်းကဏ္ဍစီမံခြင်း',
@@ -1675,6 +1675,56 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ဘုရားကျောင်းများရှိ ဆုတောင်းသူများ',
                 'ne' => 'चर्चहरूको प्रार्थना',
             ],
+            'this_movement_is_in_trash' => [
+                'en' => 'This movement is in trash.',
+                'mm' => 'ဒီ လှုပ်ရှားမှုသည် ဖျက်သိမ်းထားသည့်အထဲရောက်နေပါသည်',
+                'ne' => 'यो आन्दोलन रद्दीको टोकरीमा छ।'
+            ],
+            'movements' => [
+                'en' => 'Movements',
+                'mm' => 'လှုပ်ရှားမှုများ',
+                'ne' => 'आन्दोलनहरू'
+            ],
+            'movement' => [
+                'en' => 'Movement',
+                'mm' => 'လှုပ်ရှားမှု',
+                'ne' => 'आन्दोलन'
+            ],
+            'notifications' => [
+                'en' => 'Notifications',
+                'mm' => 'အသိပေးချက်များ',
+                'ne' => 'सूचनाहरू'
+            ],
+            'movement.need_to_change' => [
+                'en' => 'Movement.need to change',
+                'mm' => 'ပြောင်းလဲရန်လိုသော လှုပ်ရှားမှု',
+                'ne' =>  'आन्दोलन। परिवर्तन आवश्यक छ'
+            ],
+            'no_trashed_movements_found' => [
+                'en' => 'No trashed Movements found.',
+                'mm' => 'ဖျက်သိမ်းထားသော လှုပ်ရှားမှု မရှိပါ',
+                'ne' => 'रद्दीटोकरीमा हालिएका कुनै पनि चालहरू फेला परेनन्।'
+            ],
+            'viewing_trash' => [
+                'en' => 'Viewing Trash',
+                'mm' => 'ဖျက်သိမ်းထားသောအရာများကို ကြည့်ရှုခြင်း',
+                'ne' => 'रद्दीटोकरी हेर्दै'
+            ],
+            'disciple_maker' => [
+                'en' => 'Disciple Maker',
+                'mm' => 'ဘုရားကျောင်းတည်ဆောက်သူ',
+                'ne' =>  'चेला बनाउने'
+            ],
+            'movement_leader' => [
+                'en' => 'Movement Leader',
+                'mm' => 'လှုပ်ရှားမှု ဦးဆောင်သူ',
+                'ne' => 'आन्दोलनका नेता'
+            ],
+            'select_movement' => [
+                'en' => 'Select Movement',
+                'mm' => 'လှုပ်ရှားမှုကို ရွေးချယ်ပါ',
+                'ne' => 'आन्दोलन चयन गर्नुहोस्'
+            ]
         ];
 
         foreach ($words as $word => $translations) {

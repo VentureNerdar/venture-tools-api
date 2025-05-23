@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             FaithMilestoneSeeder::class,
             CommunicationPlatformSeeder::class,
             DenominationSeeder::class,
+            MovementSeeder::class,
             TranslationSeeder::class,
             CommunityChecklistSeeder::class,
 

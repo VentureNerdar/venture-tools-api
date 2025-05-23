@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Models\Church;
 use App\Models\ChurchPlanter;
 use App\Models\Contact;
@@ -11,26 +12,44 @@ class SettingsService
 {
     public function getChurchPlanterPrayers()
     {
-        $authID = Auth::user()->id;
+        $authUser = Auth::user();
 
-        $churchPlanterPrayers = ChurchPlanter::whereHas('user', function ($query) use ($authID) {
-            $query->where('id', $authID);
-        })
-            ->with(['church'])
-            ->distinct()
-            ->get()
-            ->pluck('church')
-            ->filter()
-            ->unique('id')
-            ->values();
+        if ($authUser->user_role_id === 3) { // if movement leader
+            $movementUsers = User::where('movement_id', $authUser->movement_id)->get()->pluck('id')->toArray();
 
-        $assignedToChurchPrayers = Church::where('assigned_to', $authID)->get();
-        $assignedToContactPrayers = Contact::where('assigned_to', $authID)->get();
+            $churchPlanterPrayers = ChurchPlanter::whereHas('user', function ($query) use ($movementUsers) {
+                $query->whereIn('id', $movementUsers);
+            })
+                ->with(['church'])
+                ->distinct()
+                ->get()
+                ->pluck('church')
+                ->filter()
+                ->unique('id')
+                ->values();
+
+            $assignedToChurchPrayers = Church::whereIn('assigned_to', $movementUsers)->get();
+            $assignedToContactPrayers = Contact::where('assigned_to', $movementUsers)->get();
+        } else if ($authUser->user_role_id === 4) { // if disciple maker
+
+            $churchPlanterPrayers = ChurchPlanter::whereHas('user', function ($query) use ($authUser) {
+                $query->where('id', $authUser->id);
+            })
+                ->with(['church'])
+                ->distinct()
+                ->get()
+                ->pluck('church')
+                ->filter()
+                ->unique('id')
+                ->values();
+
+            $assignedToChurchPrayers = Church::where('assigned_to', $authUser->id)->get();
+            $assignedToContactPrayers = Contact::where('assigned_to', $authUser->id)->get();
+        }
 
         return [
-            'churchPlanterPrayers' => $churchPlanterPrayers,
-            'assignedToChurchPrayers' => $assignedToChurchPrayers,
-            'assignedToContactPrayers' => $assignedToContactPrayers,
+            'churchPrayers' => [...$churchPlanterPrayers, ...$assignedToChurchPrayers],
+            'contactPrayers' => $assignedToContactPrayers,
         ];
     }
 }
