@@ -31,9 +31,10 @@ class ContactFactory extends Factory
             ]),
             'baptism_date' => fake()->dateTime(),
             'current_prayers' => fake()->paragraph(),
-            'contact_status_id' => random_int(1, 5),
+            // 'contact_status_id' => random_int(1, 5),
             'faith_status_id' => random_int(8, 10),
             'assigned_to' => User::inRandomOrder()->value('id') ?? User::factory(),
+            'is_active' => true,
         ];
     }
 }

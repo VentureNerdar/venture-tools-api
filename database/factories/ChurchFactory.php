@@ -21,7 +21,7 @@ class ChurchFactory extends Factory
     public function definition(): array
     {
         return [
-            'is_active' => $this->faker->boolean(90),
+            'is_active' => true,
             'assigned_to' => User::inRandomOrder()->value('id') ?? User::factory(),
             'name' => $this->generateChurchName(),
             'description' => $this->faker->paragraph(),

@@ -36,6 +36,11 @@ class ChurchController extends Controller
             ]);
         }
 
+        // If is_active is false, soft delete the church
+        if (!$church->is_active) {
+            $church->delete();
+        }
+
         return response()->json($church, 201);
     }
 
@@ -52,6 +57,9 @@ class ChurchController extends Controller
         }
 
         $church->load(['churchPlanters']);
+        if (!$church->is_active) {
+            $church->delete();
+        }
 
         return response()->json($church, 200);
     }
@@ -93,17 +101,30 @@ class ChurchController extends Controller
 
     public function delete($id, Request $request)
     {
+        $church = Church::find($id);
+        if ($church) {
+
+            $church->update(['is_active' => false]);
+        }
         return response()->json(...$this->service->delete($this->model, $id, $request->force));
     }
 
     public function trash($id)
     {
+
         return response()->json(...$this->service->delete($this->model, $id, false));
     }
 
     public function restore($id)
     {
-        return $this->service->restore($this->model, $id);
+        [$message, $status] = $this->service->restore($this->model, $id);
+        if ($status === 200) {
+            $church = Church::withTrashed()->find($id);
+            if ($church) {
+                $church->update(['is_active' => true]);
+            }
+        }
+        return response()->json($message, $status);
     }
 
     public function view($id)

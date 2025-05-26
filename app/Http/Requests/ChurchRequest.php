@@ -38,6 +38,7 @@ class ChurchRequest extends FormRequest
             'baptism_count' => 'nullable|integer',
             'parent_church_id' => 'nullable|integer|exists:churches,id',
             'current_prayers' => 'nullable|string',
+            // 'is_active' => 'required|boolean',
         ];
     }
 }

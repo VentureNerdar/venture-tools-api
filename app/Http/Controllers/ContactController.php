@@ -63,6 +63,11 @@ class ContactController extends Controller
 
         $contact->load(['faithMilestones', 'peopleGroup', 'contactCommunicationPlatforms']);
 
+        // If is_active is false, soft delete the contact
+        if (!$contact->is_active) {
+            $contact->delete();
+        }
+
         return response()->json($contact, 201);
     }
 
@@ -92,6 +97,11 @@ class ContactController extends Controller
         }
 
         $contact->load(['faithMilestones', 'peopleGroup', 'contactCommunicationPlatforms']);
+
+        // If is_active is false, soft delete the contact
+        if (!$contact->is_active) {
+            $contact->delete();
+        }
 
         return response()->json($contact, 200);
     }
@@ -139,6 +149,10 @@ class ContactController extends Controller
 
     public function delete($id, Request $request)
     {
+        $contact = Contact::find($id);
+        if ($contact) {
+            $contact->update(['is_active' => false]);
+        }
         return response()->json(
             ...$this->service->delete($this->model, $id, $request->force)
         );
@@ -151,9 +165,15 @@ class ContactController extends Controller
 
     public function restore($id)
     {
-        return $this->service->restore($this->model, $id);
+        [$message, $status] = $this->service->restore($this->model, $id);
+        if ($status === 200) {
+            $contact = Contact::withTrashed()->find($id);
+            if ($contact) {
+                $contact->update(['is_active' => true]);
+            }
+        }
+        return response()->json($message, $status);
     }
-
     public function view($id)
     {
         Log::info('Contact ID:', [$id]);

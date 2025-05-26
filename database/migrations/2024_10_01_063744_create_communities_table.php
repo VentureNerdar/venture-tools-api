@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('communities', function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_active')->default(true);
 
             $table->string('name', 500)->index();
             $table->decimal('location_longitude', 10, 7)->nullable();

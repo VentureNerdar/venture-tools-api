@@ -13,7 +13,7 @@ class Contact extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'contact_status_id',
+        // 'contact_status_id',
         'faith_status_id',
         'assigned_to',
         'coached_by',
@@ -27,6 +27,7 @@ class Contact extends Model
         'baptized',
 
         'current_prayers',
+        'is_active',
     ];
 
     protected $dates = [
@@ -36,6 +37,7 @@ class Contact extends Model
     protected $casts = [
         // 'baptism_date' => 'date',
         // 'baptism_date' => 'timestamp',
+        'is_active' => 'boolean',
         'age' => AgeGroup::class,
     ];
 

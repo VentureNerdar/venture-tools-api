@@ -18,11 +18,12 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Status::class, 'contact_status_id');
+            // $table->foreignIdFor(Status::class, 'contact_status_id');
             $table->foreignIdFor(User::class, 'assigned_to')->nullable();
             $table->foreignIdFor(Status::class, 'faith_status_id');
             $table->foreignIdFor(Contact::class, 'coached_by')->nullable();
 
+            $table->boolean('is_active')->default(true);
             $table->string('name', 300)->index();
             $table->string('nickname', 300)->nullable();
             $table->enum('gender', array_column(Gender::cases(), 'value'));

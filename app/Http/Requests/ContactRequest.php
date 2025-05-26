@@ -31,13 +31,14 @@ class ContactRequest extends FormRequest
             'baptism_date' => ['nullable', 'date'],
             'baptized_by' => 'nullable|exists:contacts,id',
             'current_prayers' => 'nullable|string',
-            'contact_status_id' => 'required|exists:statuses,id',
+            // 'contact_status_id' => 'required|exists:statuses,id',
             'faith_status_id' => 'required|exists:statuses,id',
             'assigned_to' => 'nullable|exists:users,id',
             'coached_by' => 'nullable|exists:contacts,id',
             'people_group' => 'nullable|array',
             'contact_communication_platforms' => 'nullable|array',
             'faith_milestones' => 'nullable|array',
+            'is_active' => 'required|boolean',
 
 
 

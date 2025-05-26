@@ -47,6 +47,11 @@ class CommunityController extends Controller
 
         $community->load(['checklists']);
 
+        // If is_active is false, soft delete the community
+        if (!$community->is_active) {
+            $community->delete();
+        }
+
         return response()->json($community, 201);
     }
 
@@ -120,6 +125,11 @@ class CommunityController extends Controller
 
         $community->load(['checklists', 'committees', 'peacePersons']);
 
+        // If is_active is false, soft delete the community
+        if (!$community->is_active) {
+            $community->delete();
+        }
+
         return response()->json($community, 200);
     }
 
@@ -167,6 +177,10 @@ class CommunityController extends Controller
 
     public function delete($id, Request $request)
     {
+        $community = Community::find($id);
+        if ($community) {
+            $community->update(['is_active' => false]);
+        }
         return response()->json(...$this->service->delete($this->model, $id, $request->force));
     }
 
@@ -177,6 +191,13 @@ class CommunityController extends Controller
 
     public function restore($id)
     {
-        return $this->service->restore($this->model, $id);
+        [$message, $status] = $this->service->restore($this->model, $id);
+        if ($status === 200) {
+            $community = Community::withTrashed()->find($id);
+            if ($community) {
+                $community->update(['is_active' => true]);
+            }
+        }
+        return response()->json($message, $status);
     }
 }

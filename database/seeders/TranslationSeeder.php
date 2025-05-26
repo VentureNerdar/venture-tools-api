@@ -1299,15 +1299,15 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ပြန်လည်ကြိုဆိုပါတယ်',
                 'ne' => 'स्वागत छ।'
             ],
-            'exit_trashed_view' => [
-                'en' => 'Exit Trashed View',
-                'mm' => 'အမှိုက်ပုံးမြင်ကွင်းမှ ထွက်ပါ',
-                'ne' => 'रद्दीको टोकरी दृश्यबाट बाहिर निस्कनुहोस्'
+            'exit_archive_view' => [
+                'en' => 'Exit archive view',
+                'mm' => 'ခွဲထားသောအရာများအား ကြည့်ရှုခြင်းမှ ထွက်ပါ',
+                'ne' => 'अभिलेख दृश्यबाट बाहिर निस्कनुहोस्'
             ],
-            'view_trashed_item' => [
-                'en' => 'View Trashed Items',
-                'mm' => 'အမှိုက်ပုံးထဲသို့ ကြည့်ရန်',
-                'ne' => 'रद्दीटोकरीमा राखिएका वस्तुहरू हेर्नुहोस्'
+            'view_archive_item' => [
+                'en' => 'View archive items',
+                'mm' => 'ခွဲထားသောအရာများကို ကြည့်ရန်',
+                'ne' => 'अभिलेख वस्तुहरू हेर्नुहोस्'
             ],
             'the_community_id_field_is_required' => [
                 'en' => 'The community field is required.',
@@ -1705,10 +1705,10 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ဖျက်သိမ်းထားသော လှုပ်ရှားမှု မရှိပါ',
                 'ne' => 'रद्दीटोकरीमा हालिएका कुनै पनि चालहरू फेला परेनन्।'
             ],
-            'viewing_trash' => [
-                'en' => 'Viewing Trash',
-                'mm' => 'ဖျက်သိမ်းထားသောအရာများကို ကြည့်ရှုခြင်း',
-                'ne' => 'रद्दीटोकरी हेर्दै'
+            'viewing_archive' => [
+                'en' => 'Viewing archive',
+                'mm' => 'ခွဲထားသောအရာများကို ကြည့်ရှုခြင်း',
+                'ne' => 'अभिलेख हेर्दै'
             ],
             'disciple_maker' => [
                 'en' => 'Disciple Maker',
@@ -1724,6 +1724,16 @@ class TranslationSeeder extends Seeder
                 'en' => 'Select Movement',
                 'mm' => 'လှုပ်ရှားမှုကို ရွေးချယ်ပါ',
                 'ne' => 'आन्दोलन चयन गर्नुहोस्'
+            ],
+            'confirm_archive' => [
+                'en' => 'Confirm archive',
+                'mm' => 'ခွဲထားရန်',
+                'ne' => 'अभिलेख पुष्टि गर्नुहोस्'
+            ],
+            'are_you_sure_you_want_to_archive_this_item' => [
+                'en' => 'Are you sure you want to archive this item',
+                'mm' => 'ခွဲထားရန် သေချာပါသလား',
+                'ne' => 'के तपाईं यो वस्तुलाई अभिलेख राख्न चाहनुहुन्छ भन्ने कुरामा निश्चित हुनुहुन्छ?'
             ]
         ];
 

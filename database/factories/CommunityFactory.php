@@ -18,6 +18,7 @@ class CommunityFactory extends Factory
     {
         return [
             'name' => $this->faker->city,
+            'is_active' => true,
             'location_longitude' => $this->faker->longitude,
             'location_latitude' => $this->faker->latitude,
             'conducted_survey_of_community_needs' => $this->faker->boolean,

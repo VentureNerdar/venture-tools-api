@@ -23,6 +23,7 @@ class CommunityRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'is_active' => ['required', 'boolean'],
             'location_longitude' => ['nullable', 'numeric', 'between:-180,180'],
             'location_latitude' => ['nullable', 'numeric', 'between:-90,90'],
             'google_location_data' => ['nullable', 'json'],

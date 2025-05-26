@@ -13,6 +13,7 @@ class Community extends Model
 
     protected $fillable = [
         'name',
+        'is_active',
         'location_longitude',
         'location_latitude',
         'google_location_data',
@@ -27,6 +28,7 @@ class Community extends Model
 
     protected $casts = [
         'conducted_survey_of_community_needs' => 'boolean',
+        'is_active' => 'boolean',
     ];
 
     public function peacePersons()
