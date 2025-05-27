@@ -1734,6 +1734,11 @@ class TranslationSeeder extends Seeder
                 'en' => 'Are you sure you want to archive this item',
                 'mm' => 'ခွဲထားရန် သေချာပါသလား',
                 'ne' => 'के तपाईं यो वस्तुलाई अभिलेख राख्न चाहनुहुन्छ भन्ने कुरामा निश्चित हुनुहुन्छ?'
+            ],
+            'movement_users' => [
+                'en' => 'Movement Users',
+                'mm' => 'လှုပ်ရှားမှုသုံးစွဲသူများ',
+                'ne' => 'आन्दोलन प्रयोगकर्ताहरू'
             ]
         ];
 

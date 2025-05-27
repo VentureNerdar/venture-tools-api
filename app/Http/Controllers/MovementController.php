@@ -7,6 +7,8 @@ use App\Services\CRUDService;
 use Illuminate\Http\Request;
 use App\Http\Requests\MovementRequest;
 use App\Http\Requests\ListRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class MovementController extends Controller
 {
@@ -55,5 +57,14 @@ class MovementController extends Controller
     public function restore($id)
     {
         return $this->service->restore($this->model, $id);
+    }
+
+    public function getMovementUsers(Request $request)
+    {
+        $authUser = Auth::user();
+
+        $movementUsers = User::where('movement_id', $authUser->movement_id)->paginate($request->per_page ?? 15);
+
+        return response()->json($movementUsers);
     }
 }

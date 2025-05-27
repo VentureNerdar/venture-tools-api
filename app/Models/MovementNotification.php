@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MovementNotification extends Model
 {
     protected $fillable = [
-        'movement_id',
+        'user_id',
         'title',
         'body',
     ];

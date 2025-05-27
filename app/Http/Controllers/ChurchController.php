@@ -111,7 +111,6 @@ class ChurchController extends Controller
 
     public function trash($id)
     {
-
         return response()->json(...$this->service->delete($this->model, $id, false));
     }
 

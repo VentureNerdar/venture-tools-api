@@ -22,7 +22,7 @@ class MovementNotificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'movement_id' => 'required|integer|exists:movements,id',
+            'user_id' => 'required|integer|exists:users,id',
             'title' => 'required|string',
             'body' => 'required|string',
         ];
