@@ -3,9 +3,11 @@
 use App\Models\Movement;
 use App\Models\SystemLanguage;
 use App\Models\UserRole;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
 
 return new class extends Migration
 {
@@ -29,6 +31,9 @@ return new class extends Migration
             $table->timestamp('last_login_at')->nullable();
             $table->foreignIdFor(SystemLanguage::class, 'preferred_language_id')->nullable();
             $table->foreignIdFor(Movement::class, 'movement_id')->nullable();
+            $table->foreignIdFor(User::class, 'user_verifier_id')->nullable();
+            $table->boolean('is_verified')->default(value: false);
+            $table->timestamp('verified_at')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

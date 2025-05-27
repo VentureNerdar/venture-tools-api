@@ -35,6 +35,9 @@ class User extends Authenticatable
         'biography',
         'last_login_at',
         'preferred_language_id',
+        'is_verified',
+        'user_verifier_id',
+        'verified_at'
     ];
 
     /**
@@ -95,5 +98,10 @@ class User extends Authenticatable
     public function devices()
     {
         return $this->hasMany(UserDevice::class);
+    }
+
+    public function verifier()
+    {
+        return $this->belongsTo(User::class, 'user_verifier_id');
     }
 }

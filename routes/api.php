@@ -29,6 +29,10 @@ Route::prefix('registration')->group(function () {
     Route::prefix('options')->group(function () {
         Route::get('/', [RegistrationController::class, 'getRegistrationOptions'])->name('registration.options');
     });
+
+    Route::prefix('register')->group(function () {
+        Route::post('/', [RegistrationController::class, 'register'])->name('registration.register');
+    });
 });
 
 Route::middleware('auth:sanctum')->group(function () {
