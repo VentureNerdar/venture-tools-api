@@ -27,7 +27,7 @@ class BroadcastMovementNotification extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send notification to all users in a movement';
 
     /**
      * Execute the console command.

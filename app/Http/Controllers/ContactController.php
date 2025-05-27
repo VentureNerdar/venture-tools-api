@@ -11,7 +11,6 @@ use App\Services\CRUDService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 /**
  * ContactController
@@ -122,7 +121,6 @@ class ContactController extends Controller
             ]);
         } else if ($user->user_role_id == 3) {
             $movementUsers = User::where('movement_id', $user->movement_id)->get()->pluck('id')->toArray();
-            Log::info('Movement Users:', [$movementUsers]);
             $request->merge([
                 'where' => json_encode($existingWhere),
                 'whereIn' => json_encode([
@@ -176,7 +174,6 @@ class ContactController extends Controller
     }
     public function view($id)
     {
-        Log::info('Contact ID:', [$id]);
         return $this->service->browse($this->model, null, $id);
     }
 }

@@ -277,6 +277,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [MovementController::class, 'create'])->name('movement.create');
         Route::get('/list', [MovementController::class, 'list'])->name('movements.list');
         Route::get('/users', [MovementController::class, 'getMovementUsers'])->name('movements.users');
+        Route::post('/verify-user', [MovementController::class, 'verifyUser'])->name('movements.verifyUser');
 
         Route::prefix('id/{id}')->group(function () {
             Route::put('/', [MovementController::class, 'update'])->name('movement.update');

@@ -1739,7 +1739,63 @@ class TranslationSeeder extends Seeder
                 'en' => 'Movement Users',
                 'mm' => 'လှုပ်ရှားမှုသုံးစွဲသူများ',
                 'ne' => 'आन्दोलन प्रयोगकर्ताहरू'
-            ]
+            ],
+            'verified' => [
+                'en' => 'Verified',
+                'mm' => 'အတည်ပြုရန်',
+                'ne' => 'प्रमाणित'
+            ],
+            'body' => [
+                'en' => 'Body',
+                'mm' => 'စာကိုယ်',
+                'ne' => 'शरीर'
+            ],
+            'send' => [
+                'en' => 'Send',
+                'mm' => 'ပို့ရန်',
+                'ne' => 'पठाउनुहोस्'
+            ],
+            'title_is_required' => [
+                'en' => 'Title is required',
+                'mm' => 'ခေါင်းစဉ်လိုအပ်ပါသည်',
+                'ne' => 'शीर्षक आवश्यक छ'
+            ],
+            'body_is_required' => [
+                'en' => 'Body is required',
+                'mm' => 'စာကိုယ်လိုအပ်ပါသည်',
+                'ne' => 'शरीर आवश्यक छ'
+            ],
+            'created' => [
+                'en' => 'Created',
+                'mm' => 'ဖန်တီးထားသည်',
+                'ne' => 'सिर्जना गरियो'
+            ],
+            'updated' => [
+                'en' => 'Updated',
+                'mm' => 'ပြင်ဆင်ထားသည်',
+                'ne' => 'अद्यावधिक गरियो'
+            ],
+            'deleted' => [
+                'en' => 'Deleted',
+                'mm' => 'ဖျက်ထားသည်',
+                'ne' => 'मेटाइयो'
+            ],
+            'trashed' => [
+                'en' => 'Archived',
+                'mm' => 'ခွဲထားသည်',
+                'ne' => 'अभिलेख गरिएको'
+            ],
+            'data_has_been_deleted_successfully' => [
+                'en' => 'Data has been deleted successfully',
+                'mm' => 'ဒေတာအားလုံးကို အောင်မြင်စွာ ဖျက်ထားသည်',
+                'ne' => 'डेटा सफलतापूर्वक मेटाइएको छ।'
+            ],
+            'data_has_been_saved_successfully' => [
+                'en' => 'Data has been saved successfully',
+                'mm' => 'ဒေတာအားလုံးကို အောင်မြင်စွာ သိမ်းထားသည်',
+                'ne' => 'डेटा सफलतापूर्वक सहेजिएको छ।'
+            ],
+
         ];
 
         foreach ($words as $word => $translations) {

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MovementRequest;
 use App\Http\Requests\ListRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class MovementController extends Controller
@@ -66,5 +67,15 @@ class MovementController extends Controller
         $movementUsers = User::where('movement_id', $authUser->movement_id)->paginate($request->per_page ?? 15);
 
         return response()->json($movementUsers);
+    }
+
+    public function verifyUser(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->is_verified = true;
+        $user->verified_at = Carbon::now();
+        $user->user_verifier_id = Auth::user()->id;
+        $user->save();
+        return response()->json($user);
     }
 }

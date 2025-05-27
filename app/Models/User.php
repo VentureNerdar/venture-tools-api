@@ -66,6 +66,7 @@ class User extends Authenticatable
             // 'updated_at'            => 'immutable_datetime:d M Y',
             'password' => 'hashed',
             'is_active' => 'boolean',
+            'is_verified' => 'boolean',
             'updated_at' => 'date',
         ];
     }

@@ -7,7 +7,6 @@ use App\Models\MovementNotification;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Log;
 
 class MovementNotificationController extends Controller
 {
@@ -24,7 +23,6 @@ class MovementNotificationController extends Controller
     public function create(MovementNotificationRequest $request)
 
     {
-        Log::info($request->all());
         Artisan::call('app:broadcast-movement-notification', [
             'title' => $request->input('title'),
             'body' => $request->input('body'),
