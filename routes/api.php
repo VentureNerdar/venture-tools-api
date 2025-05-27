@@ -18,11 +18,18 @@ use App\Http\Controllers\SystemLanguageController;
 use App\Http\Controllers\SystemLanguageWordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\RegistrationController;
 use App\Models\Community;
 use Illuminate\Support\Facades\Route;
 
 // Route::post('register', [UserController::class, 'register'])->name('user.register');
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+
+Route::prefix('registration')->group(function () {
+    Route::prefix('options')->group(function () {
+        Route::get('/', [RegistrationController::class, 'getRegistrationOptions'])->name('registration.options');
+    });
+});
 
 Route::middleware('auth:sanctum')->group(function () {
     // Authentication
