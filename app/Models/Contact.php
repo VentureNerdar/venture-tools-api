@@ -24,6 +24,7 @@ class Contact extends Model
 
         'baptism_date',
         'baptized_by',
+        'baptized_by_name',
         'baptized',
 
         'current_prayers',

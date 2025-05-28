@@ -30,6 +30,7 @@ return new class extends Migration
             $table->enum('age', array_column(AgeGroup::cases(), 'value'))->default('26-40 years old');
             $table->dateTime('baptism_date')->nullable();
             $table->foreignIdFor(Contact::class, 'baptized_by')->nullable();
+            $table->string('baptized_by_name', 300)->nullable();
 
             $table->text('current_prayers')->nullable();
 

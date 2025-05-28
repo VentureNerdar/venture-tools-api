@@ -30,6 +30,7 @@ class ContactRequest extends FormRequest
             'age' => ['required', 'in:' . implode(',', AgeGroup::values())],
             'baptism_date' => ['nullable', 'date'],
             'baptized_by' => 'nullable|exists:contacts,id',
+            'baptized_by_name' => 'nullable|string|max:255',
             'current_prayers' => 'nullable|string',
             // 'contact_status_id' => 'required|exists:statuses,id',
             'faith_status_id' => 'required|exists:statuses,id',
