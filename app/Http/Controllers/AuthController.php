@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\ChurchPlanter;
 use App\Models\User;
+use App\Models\UserDevice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\UserDevice;
 
 class AuthController extends Controller
 {
@@ -38,13 +38,32 @@ class AuthController extends Controller
         $request->validate([
             'identifier' => 'required|string',
             'password' => 'required|min:8',
-            'login_type' => 'required|string|in:email,phone_number',
+            'platform' => 'required|string|in:android,ios,web',
         ]);
 
-        $field = $request->login_type === 'email' ? 'email' : 'phone_number';
-        $user = User::where($field, $request->email)->first();
+        $user = User::where('email', $request->identifier)
+            ->orWhere('phone_number', $request->identifier)
+            ->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        // User not found
+        if (! $user) {
+            return response([
+                'message' => ['User not found'],
+            ], 422);
+        }
+
+        // If Mobile
+        if ($request->platform === 'android' || $request->platform === 'ios') {
+            // if user not church planter / deciple maker
+            if ($user->user_role_id !== 4) {
+                return response([
+                    'message' => ['Only Disciple Makers are to use from mobile platform.'],
+                ], 422);
+            }
+        }
+
+        // Wrong Password
+        if (! Hash::check($request->password, $user->password)) {
             return response([
                 'message' => ['These credentials do not match our records.'],
             ], 422);
@@ -71,7 +90,7 @@ class AuthController extends Controller
         $user->tokens()->delete();
 
         $response = [
-            'message' => 'logged out'
+            'message' => 'logged out',
         ];
 
         return response($response);
