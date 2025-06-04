@@ -25,10 +25,9 @@ class StatusSeeder extends Seeder
                 'Inactive'
             ],
             'faith_status' => [
-                'Seeker',
-                'Believer',
+                'Desiciple',
                 'Leader',
-                'Disciple'
+                'Desiple Maker'
             ],
         ];
 

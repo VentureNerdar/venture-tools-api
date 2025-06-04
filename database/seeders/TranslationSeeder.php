@@ -1409,20 +1409,20 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ပင်နံပါတ်ကို အတည်ပြုပါ',
                 'ne' => 'आफ्नो पिन नम्बर पुष्टि गर्नुहोस्'
             ],
-            'no_trashed_church_found' => [
-                'en' =>  'No trashed church found',
-                'mm' => 'ဖျက်ထားသော ဘုရားကျောင်းမရှိပါ',
-                'ne' => 'फोहोर फालिएका चर्चहरू भेटिएनन्'
+            'no_archived_church_found' => [
+                'en' =>  'No archived church found',
+                'mm' => 'ခွဲထားသော ဘုရားကျောင်းမရှိပါ',
+                'ne' => 'कुनै अभिलेख राखिएको चर्च भेटिएन'
             ],
-            'no_trashed_contact_found' => [
-                'en' =>  'No trashed contact found',
-                'mm' => 'ဖျက်ထားသော အဆက်အသွယ်မရှိပါ',
-                'ne' => 'रद्दीको टोकरीमा हालिएको कुनै सम्पर्क भेटिएन'
+            'no_archived_contact_found' => [
+                'en' =>  'No archived contact found',
+                'mm' => 'ခွဲထားသော အဆက်အသွယ်မရှိပါ',
+                'ne' => 'कुनै अभिलेख गरिएको सम्पर्क फेला परेन'
             ],
-            'no_trashed_community_found' => [
-                'en' => 'No trashed community found',
-                'mm' =>  'ဖျက်ထားသော အသိုင်းအဝိုင်းမရှိပါ',
-                'ne' => 'रद्दीटोकरीमा हालिएको कुनै समुदाय भेटिएन'
+            'no_archived_community_found' => [
+                'en' => 'No archived community found',
+                'mm' =>  'ခွဲထားသော အသိုင်းအဝိုင်းမရှိပါ',
+                'ne' => 'कुनै अभिलेख गरिएको समुदाय फेला परेन'
             ],
             'choose_contact_status' => [
                 'en' => 'Choose contact status',
@@ -1795,6 +1795,11 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ဒေတာအားလုံးကို အောင်မြင်စွာ သိမ်းထားသည်',
                 'ne' => 'डेटा सफलतापूर्वक सहेजिएको छ।'
             ],
+            'archive' => [
+                'en' => 'Archive',
+                'mm' => 'ခွဲထားရန်',
+                'ne' => 'अभिलेख'
+            ]
 
         ];
 
