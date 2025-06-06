@@ -7,6 +7,7 @@ use App\Http\Requests\PrayerPromptRequest;
 use App\Http\Requests\ListRequest;
 use App\Models\PrayerPrompt;
 use App\Services\CRUDService;
+use Illuminate\Support\Facades\Auth;
 
 class PrayerPromptController extends Controller
 {
@@ -22,6 +23,7 @@ class PrayerPromptController extends Controller
 
     public function create(PrayerPromptRequest $request)
     {
+
         return response()->json(...$this->service->save($this->model, null, $request->validated()));
     }
 

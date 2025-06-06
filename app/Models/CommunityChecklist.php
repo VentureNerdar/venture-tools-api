@@ -9,5 +9,5 @@ class CommunityChecklist extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'order'];
 }

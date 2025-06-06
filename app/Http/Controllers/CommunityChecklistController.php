@@ -22,6 +22,7 @@ class CommunityChecklistController extends Controller
 
     public function create(CommunityChecklistRequest $request)
     {
+
         return response()->json(...$this->service->save($this->model, null, $request->validated()));
     }
 
@@ -32,6 +33,12 @@ class CommunityChecklistController extends Controller
 
     public function browse(Request $request)
     {
+        $request->merge([
+            'sort' => json_encode([
+                'key' => 'order',
+                'order' => 'desc'
+            ])
+        ]);
         return response()->json(...$this->service->browse($this->model, $request));
     }
 
@@ -57,5 +64,27 @@ class CommunityChecklistController extends Controller
     public function restore($id)
     {
         return $this->service->restore($this->model, $id);
+    }
+
+    public function updateAll(Request $request)
+    {
+        $data = $request->all();
+        $validated = $request->validate([
+            '*.id' => 'required|integer|exists:community_checklists,id',
+            '*.name' => 'required|string',
+            '*.order' => 'required|integer',
+        ]);
+        foreach ($validated as $item) {
+            CommunityChecklist::where('id', $item['id'])->update([
+                'name' => $item['name'],
+                'order' => $item['order'],
+                'updated_at' => now(),
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Checklist items updated successfully.',
+            'count' => count($data),
+        ]);
     }
 }

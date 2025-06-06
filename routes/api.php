@@ -242,6 +242,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [CommunityChecklistController::class, 'browse'])->name('communityChecklist.browse');
         Route::post('/', [CommunityChecklistController::class, 'create'])->name('communityChecklist.create');
         Route::get('/list', [CommunityChecklistController::class, 'list'])->name('communityChecklist.list');
+        Route::post('/update-all', [CommunityChecklistController::class, 'updateAll'])->name('communityChecklist.updateAll');
 
         Route::prefix('id/{id}')->group(function () {
             Route::put('/', [CommunityChecklistController::class, 'update'])->name('communityChecklist.update');
@@ -301,6 +302,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('prayer-prompts')->group(function () {
         Route::get('/', [PrayerPromptController::class, 'browse'])->name('prayerPrompt.browse');
         Route::post('/', [PrayerPromptController::class, 'create'])->name('prayerPrompt.create');
+        Route::get('/list', [PrayerPromptController::class, 'list'])->name('prayerPrompts.list');
+        Route::prefix('id/{id}')->group(function () {
+            Route::put('/', [PrayerPromptController::class, 'update'])->name('prayerPrompt.update');
+            Route::get('/', [PrayerPromptController::class, 'view'])->name('prayerPrompt.view');
+            Route::delete('/', [PrayerPromptController::class, 'delete'])->name('prayerPrompt.delete');
+            Route::delete('trash', [PrayerPromptController::class, 'trash'])->name('prayerPrompt.trash');
+            Route::post('restore', [PrayerPromptController::class, 'restore'])->name('prayerPrompt.restore');
+        });
     });
     // e.o PRAYER PROMPTS
 });

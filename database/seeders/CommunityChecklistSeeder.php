@@ -22,9 +22,10 @@ class CommunityChecklistSeeder extends Seeder
             'Evaluation of Results',
         ];
 
-        foreach ($checklists as $item) {
+        foreach ($checklists as $key => $item) {
             \App\Models\CommunityChecklist::firstOrCreate([
                 'name' => $item,
+                'order' => $key,
             ]);
         }
     }

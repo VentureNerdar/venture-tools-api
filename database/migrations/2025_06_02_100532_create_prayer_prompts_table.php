@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('prompt_text');
             $table->foreignIdFor(User::class);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

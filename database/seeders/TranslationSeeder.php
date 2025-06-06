@@ -1799,6 +1799,21 @@ class TranslationSeeder extends Seeder
                 'en' => 'Archive',
                 'mm' => 'ခွဲထားရန်',
                 'ne' => 'अभिलेख'
+            ],
+            'prompt_text' =>  [
+                'en' => 'Prompt Text',
+                'mm' => 'ဆုတောင်းစကား',
+                'ne' => 'प्रम्प्ट टेक्स्ट'
+            ],
+            'manage_prayer_prompts' => [
+                'en' => 'Manage Prayer Prompt',
+                'mm' => 'ဆုတောင်းစကားများကို စိမံခြင်း',
+                'ne' => 'प्रार्थना प्रम्प्ट व्यवस्थापन गर्नुहोस्'
+            ],
+            'prayer_prompt' => [
+                'en' => 'Prayer Prompt',
+                'mm' => 'ဆုတောင်းစကား',
+                'ne' => 'प्रार्थना शीघ्र'
             ]
 
         ];
