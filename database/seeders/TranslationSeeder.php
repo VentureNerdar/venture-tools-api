@@ -1810,9 +1810,9 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ဆုတောင်းစကားများကို စိမံခြင်း',
                 'ne' => 'प्रार्थना प्रम्प्ट व्यवस्थापन गर्नुहोस्'
             ],
-            'prayer_prompt' => [
-                'en' => 'Prayer Prompt',
-                'mm' => 'ဆုတောင်းစကား',
+            'prayer_prompts' => [
+                'en' => 'Prayer Prompts',
+                'mm' => 'ဆုတောင်းစကားများ',
                 'ne' => 'प्रार्थना शीघ्र'
             ]
 
