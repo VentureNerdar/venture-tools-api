@@ -19,7 +19,7 @@ use App\Http\Controllers\SystemLanguageWordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\RegistrationController;
-use App\Models\Community;
+use App\Http\Controllers\PrayerPromptController;
 use Illuminate\Support\Facades\Route;
 
 // Route::post('register', [UserController::class, 'register'])->name('user.register');
@@ -296,4 +296,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('id/{id}', [MovementNotificationController::class, 'delete'])->name('movementNotification.delete');
     });
     // e.o MOVEMENT NOTIFICATIONS
+
+    // PRAYER PROMPTS
+    Route::prefix('prayer-prompts')->group(function () {
+        Route::get('/', [PrayerPromptController::class, 'browse'])->name('prayerPrompt.browse');
+        Route::post('/', [PrayerPromptController::class, 'create'])->name('prayerPrompt.create');
+    });
+    // e.o PRAYER PROMPTS
 });
