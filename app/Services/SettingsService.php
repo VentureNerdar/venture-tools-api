@@ -12,6 +12,12 @@ class SettingsService
 {
     public function getChurchPlanterPrayers()
     {
+        // Always initialize as arrays
+        $churchPlanterPrayers = [];
+        $assignedToChurchPrayers = [];
+        $assignedToContactPrayers = [];
+        $allChurchPrayers = [];
+        $allContactPrayers = [];
         $authUser = Auth::user();
 
         if ($authUser->user_role_id === 3) { // if movement leader
@@ -30,7 +36,7 @@ class SettingsService
 
             $assignedToChurchPrayers = Church::whereIn('assigned_to', $movementUsers)->get();
             $assignedToContactPrayers = Contact::where('assigned_to', $movementUsers)->get();
-        } else if ($authUser->user_role_id === 4) { // if disciple maker
+        } elseif ($authUser->user_role_id === 4) { // if disciple maker
 
             $churchPlanterPrayers = ChurchPlanter::whereHas('user', function ($query) use ($authUser) {
                 $query->where('id', $authUser->id);
@@ -45,11 +51,26 @@ class SettingsService
 
             $assignedToChurchPrayers = Church::where('assigned_to', $authUser->id)->get();
             $assignedToContactPrayers = Contact::where('assigned_to', $authUser->id)->get();
+        } elseif ($authUser->user_role_id === 1) {
+            $allChurchPrayers = Church::whereNotNull('current_prayers')
+                ->where('current_prayers', '!=', '')
+                ->get();
+
+            $allContactPrayers = Contact::whereNotNull('current_prayers')
+                ->where('current_prayers', '!=', '')
+                ->get();
         }
 
         return [
-            'churchPrayers' => [...$churchPlanterPrayers, ...$assignedToChurchPrayers],
-            'contactPrayers' => $assignedToContactPrayers,
+            'churchPrayers' => [
+                ...($churchPlanterPrayers ?? []),
+                ...($assignedToChurchPrayers ?? []),
+                ...($allChurchPrayers ?? [])
+            ],
+            'contactPrayers' => [
+                ...($assignedToContactPrayers ?? []),
+                ...($allContactPrayers ?? [])
+            ],
         ];
     }
 }
