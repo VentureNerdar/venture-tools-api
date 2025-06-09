@@ -38,7 +38,7 @@ class AuthController extends Controller
         $request->validate([
             'identifier' => 'required|string',
             'password' => 'required|min:8',
-            'platform' => 'required|string|in:android,ios,web',
+            'platform' => 'required|string|in:mobile,web',
         ]);
 
         $user = User::where('email', $request->identifier)
@@ -53,7 +53,7 @@ class AuthController extends Controller
         }
 
         // If Mobile
-        if ($request->platform === 'android' || $request->platform === 'ios') {
+        if ($request->platform === 'mobile') {
             // if user not church planter / deciple maker
             if ($user->user_role_id !== 4) {
                 return response([
