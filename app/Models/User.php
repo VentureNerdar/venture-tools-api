@@ -37,6 +37,7 @@ class User extends Authenticatable
         'preferred_language_id',
         'is_verified',
         'user_verifier_id',
+        'contact_id',
         'verified_at'
     ];
 
@@ -104,5 +105,10 @@ class User extends Authenticatable
     public function verifier()
     {
         return $this->belongsTo(User::class, 'user_verifier_id');
+    }
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class, 'contact_id');
     }
 }

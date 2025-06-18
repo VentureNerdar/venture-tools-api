@@ -11,6 +11,7 @@ use App\Services\CRUDService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * ContactController
@@ -43,6 +44,14 @@ class ContactController extends Controller
             $date = $data['baptism_date'];
             $data['baptism_date'] = Carbon::createFromTimestampMs($date / 1000);
         }
+        if (isset($data['user_profile_id']) && $data['user_profile_id']) {
+            $oldContact = Contact::where('user_profile_id', $data['user_profile_id'])->first();
+            if ($oldContact) {
+                $oldContact->user_profile_id = null;
+                $oldContact->save();
+            }
+        }
+
 
         $contact = $this->service->save($this->model, null, $data)[0];
 
@@ -67,6 +76,14 @@ class ContactController extends Controller
             $contact->delete();
         }
 
+        // fetch the user when user profile id is provided
+        if (isset($data['user_profile_id']) && $data['user_profile_id']) {
+            $user = User::find($data['user_profile_id']);
+            if ($user) {
+                $user->update(['contact_id' => $contact->id]);
+            }
+        }
+
         return response()->json($contact, 201);
     }
 
@@ -78,6 +95,13 @@ class ContactController extends Controller
             // Dividing by 1000 to convert milliseconds to seconds
             $bDate = $data['baptism_date'];
             $data['baptism_date'] = Carbon::createFromTimestampMs($bDate / 1000);
+        }
+        if (isset($data['user_profile_id']) && $data['user_profile_id']) {
+            $oldContact = Contact::where('user_profile_id', $data['user_profile_id'])->first();
+            if ($oldContact) {
+                $oldContact->user_profile_id = null;
+                $oldContact->save();
+            }
         }
 
         $contact = $this->service->save($this->model, $id, $data)[0];
@@ -101,6 +125,20 @@ class ContactController extends Controller
         if (!$contact->is_active) {
             $contact->delete();
         }
+        $user = null;
+
+        if (isset($data['user_profile_id']) && $data['user_profile_id']) {
+            $user = User::find($data['user_profile_id']);
+        }
+        // if ($user->contact_id != $id) {
+        $oldUser = User::where('contact_id', $id)->first();
+        if ($oldUser) {
+            $oldUser->update(['contact_id' => null]);
+        }
+        if ($user) {
+            $user->update(['contact_id' => $id]);
+        }
+        // }
 
         return response()->json($contact, 200);
     }

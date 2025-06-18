@@ -29,6 +29,7 @@ class Contact extends Model
 
         'current_prayers',
         'is_active',
+        'user_profile_id',
     ];
 
     protected $dates = [
@@ -88,5 +89,10 @@ class Contact extends Model
     {
         // return $this->hasMany(Contact::class, 'baptized_by')->where('id', '!=', $this->id);
         return $this->hasMany(Contact::class, 'baptized_by');
+    }
+
+    public function userProfile()
+    {
+        return $this->belongsTo(User::class, 'user_profile_id');
     }
 }

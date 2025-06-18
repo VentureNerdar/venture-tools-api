@@ -40,8 +40,7 @@ class ContactRequest extends FormRequest
             'contact_communication_platforms' => 'nullable|array',
             'faith_milestones' => 'nullable|array',
             'is_active' => 'required|boolean',
-
-
+            'user_profile_id' => 'nullable|exists:users,id',
 
             // 'denomination_id' => 'required|exists:denominations,id',
             // 'faith_milestone_id' => 'required|exists:faith_milestones,id',

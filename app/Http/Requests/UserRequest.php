@@ -49,6 +49,7 @@ class UserRequest extends FormRequest
             'biography' => 'nullable|string',
             'last_login_at' => 'nullable|date',
             'preferred_language_id' => 'nullable|exists:system_languages,id',
+            'contact_id' => 'nullable|exists:contacts,id',
         ];
     }
 }

@@ -34,8 +34,12 @@ class SettingsService
                 ->unique('id')
                 ->values();
 
-            $assignedToChurchPrayers = Church::whereIn('assigned_to', $movementUsers)->get();
-            $assignedToContactPrayers = Contact::where('assigned_to', $movementUsers)->get();
+            $assignedToChurchPrayers = Church::whereIn('assigned_to', $movementUsers)
+                ->whereNotNull('current_prayers')
+                ->get();
+            $assignedToContactPrayers = Contact::where('assigned_to', $movementUsers)
+                ->whereNotNull('current_prayers')
+                ->get();
         } elseif ($authUser->user_role_id === 4) { // if disciple maker
 
             $churchPlanterPrayers = ChurchPlanter::whereHas('user', function ($query) use ($authUser) {
@@ -49,8 +53,12 @@ class SettingsService
                 ->unique('id')
                 ->values();
 
-            $assignedToChurchPrayers = Church::where('assigned_to', $authUser->id)->get();
-            $assignedToContactPrayers = Contact::where('assigned_to', $authUser->id)->get();
+            $assignedToChurchPrayers = Church::where('assigned_to', $authUser->id)
+                ->whereNotNull('current_prayers')
+                ->get();
+            $assignedToContactPrayers = Contact::where('assigned_to', $authUser->id)
+                ->whereNotNull('current_prayers')
+                ->get();
         } elseif ($authUser->user_role_id === 1) {
             $allChurchPrayers = Church::whereNotNull('current_prayers')
                 ->where('current_prayers', '!=', '')

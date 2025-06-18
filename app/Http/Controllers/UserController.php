@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeviceRequest;
 use App\Http\Requests\ListRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Contact;
 use App\Models\User;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request as RequestFacade;
 
 class UserController extends Controller
@@ -24,12 +26,62 @@ class UserController extends Controller
 
     public function create(UserRequest $request)
     {
-        return response()->json(...$this->service->save($this->model, null, $request->validated()));
+        $validatedData = $request->validated();
+        // $oldUser = User::where('contact_id', $validatedData['contact_id'])->first();
+        // if ($oldUser) {
+        //     $oldUser->contact_id = null;
+        //     $oldUser->save();
+        // }
+        if (isset($validatedData['contact_id']) && $validatedData['contact_id']) {
+            $oldUser = User::where('contact_id', $validatedData['contact_id'])->first();
+            if ($oldUser) {
+                $oldUser->contact_id = null;
+                $oldUser->save();
+            }
+        }
+        $user = $this->service->save($this->model, null, $validatedData)[0];
+        // $contact = Contact::find($validatedData['contact_id']);
+        // if ($contact) {
+
+        //     $contact->user_profile_id = $user->id;
+        //     $contact->save();
+        // }
+        if (isset($validatedData['contact_id']) && $validatedData['contact_id']) {
+            $contact = Contact::find($validatedData['contact_id']);
+            if ($contact) {
+                $contact->user_profile_id = $user->id;
+                $contact->save();
+            }
+        }
+        return response()->json($user);
     }
 
     public function update(UserRequest $request, $id)
     {
-        return response()->json(...$this->service->save($this->model, $id, $request->validated()));
+        $validatedData = $request->validated();
+        if (isset($validatedData['contact_id']) && $validatedData['contact_id']) {
+            $oldUser = User::where('contact_id', $validatedData['contact_id'])->first();
+            if ($oldUser) {
+                $oldUser->contact_id = null;
+                $oldUser->save();
+            }
+        }
+
+        $user = $this->service->save($this->model, $id, $validatedData)[0];
+        if (isset($validatedData['contact_id']) && $validatedData['contact_id']) {
+            $contact = Contact::find($validatedData['contact_id']);
+            if ($contact->user_profile_id != $id) {
+                $userID = $user->id;
+                $oldContact = Contact::where('user_profile_id', $userID)->first();
+                if ($oldContact) {
+                    $oldContact->user_profile_id = null;
+                    $oldContact->save();
+                }
+                $contact->user_profile_id = $id;
+                $contact->save();
+            }
+        }
+        return response()->json($user);
     }
 
     public function browse(Request $request)

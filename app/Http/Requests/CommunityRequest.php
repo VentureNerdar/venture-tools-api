@@ -26,7 +26,7 @@ class CommunityRequest extends FormRequest
             'is_active' => ['required', 'boolean'],
             'location_longitude' => ['nullable', 'numeric', 'between:-180,180'],
             'location_latitude' => ['nullable', 'numeric', 'between:-90,90'],
-            'google_location_data' => ['nullable', 'json'],
+            'google_location_data' => 'nullable|json',
             'conducted_survey_of_community_needs' => ['nullable', 'boolean'],
             'community_needs_1' => ['nullable', 'string'],
             'community_needs_2' => ['nullable', 'string'],

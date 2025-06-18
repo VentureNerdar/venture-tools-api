@@ -1810,11 +1810,52 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ဆုတောင်းစကားများကို စိမံခြင်း',
                 'ne' => 'प्रार्थना प्रम्प्ट व्यवस्थापन गर्नुहोस्'
             ],
+            'choose_prayer_prompts' => [
+                'en' => 'Choose Prayer Prompt',
+                'mm' => 'ဆုတောင်းစကားများကို ရွေးချယ်ပါ',
+                'ne' => 'प्रार्थना प्रम्प्ट छनौट गर्नुहोस्'
+            ],
             'prayer_prompts' => [
                 'en' => 'Prayer Prompts',
                 'mm' => 'ဆုတောင်းစကားများ',
                 'ne' => 'प्रार्थना शीघ्र'
+            ],
+            'user_profile' => [
+                'en' => 'User Profile',
+                'mm' => 'အသုံးပြုသူအချက်အလက်',
+                'ne' => 'प्रयोगकर्ता प्रोफाइल'
+            ],
+            'add_user_profile' => [
+                'en' => 'Add User Profile',
+                'mm' => 'အသုံးပြုသူအချက်အလက်ဖြည့်ရန်',
+                'ne' => 'प्रयोगकर्ता प्रोफाइल थप्नुहोस्'
+            ],
+            'choose_contact' => [
+                'en' => 'Choose Contact',
+                'mm' => 'အဆက်အသွယ်ကိုရွေးချယ်ပါ',
+                'ne' => 'सम्पर्क छान्नुहोस्'
+            ],
+            'enter_profile' => [
+                'en' => 'Enter Profile',
+                'mm' => 'အချက်အလက်ဖြည့်ရန်',
+                'ne' => 'प्रोफाइल प्रविष्ट गर्नुहोस्'
+            ],
+            'contact_profile' => [
+                'en' => 'Contact Profile',
+                'mm' => 'အဆက်အသွယ်အချက်အလက်',
+                'ne' => 'सम्पर्क प्रोफाइल'
+            ],
+            'no_contact_profile' => [
+                'en' => 'No Contact Profile',
+                'mm' => 'အဆက်အသွယ်အချက်အလက်မရှိပါ',
+                'ne' => 'सम्पर्क नभएको प्रोफाइल'
+            ],
+            'go_to_contact_profile' => [
+                'en' => 'Go To Contact Profile',
+                'mm' => 'အဆက်အသွယ်အချက်အလက်သို့သွားရန်',
+                'ne' => 'सम्पर्क प्रोफाइलमा जानुहोस्'
             ]
+
 
         ];
 
