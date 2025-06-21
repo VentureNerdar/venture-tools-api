@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ChurchRequest;
 use App\Http\Requests\ListRequest;
 use App\Models\Church;
+use App\Models\ChurchMember;
 use App\Models\ChurchPlanter;
 use App\Models\User;
 use App\Services\CRUDService;
@@ -35,6 +36,16 @@ class ChurchController extends Controller
                 'user_id' => $planterData,
             ]);
         }
+        if ($church->member_count_by_people_group) {
+            $churchMembers = $request->input('member_count_list_by_people_group', []);
+            foreach ($churchMembers as $memberData) {
+                ChurchMember::create([
+                    'church_id' => $church->id,
+                    'people_group_id' => $memberData['people_group_id'],
+                    'amount' => $memberData['amount'],
+                ]);
+            }
+        }
 
         // If is_active is false, soft delete the church
         if (!$church->is_active) {
@@ -54,6 +65,20 @@ class ChurchController extends Controller
                 'church_id' => $church->id,
                 'user_id' => $planterData,
             ]);
+        }
+        if ($church->member_count_by_people_group) {
+            $churchMembers = $request->input('member_count_list_by_people_group', []);
+
+            $church->churchMembers()->delete();
+            foreach ($churchMembers as $memberData) {
+                ChurchMember::create([
+                    'church_id' => $church->id,
+                    'people_group_id' => $memberData['people_group_id'],
+                    'amount' => $memberData['amount'],
+                ]);
+            }
+        } else {
+            $church->churchMembers()->delete();
         }
 
         $church->load(['churchPlanters']);
@@ -77,7 +102,7 @@ class ChurchController extends Controller
             $request->merge([
                 'where' => json_encode($existingWhere)
             ]);
-        } else if ($user->user_role_id == 3) {
+        } elseif ($user->user_role_id == 3) {
             $movementUsers = User::where('movement_id', $user->movement_id)->get()->pluck('id')->toArray();
             $request->merge([
                 'where' => json_encode($existingWhere),
@@ -87,7 +112,8 @@ class ChurchController extends Controller
                 ])
             ]);
         }
-        return response()->json(...$this->service->browse($this->model, $request));
+        $churches = $this->service->browse($this->model, $request);
+        return response()->json(...$churches);
     }
 
     public function list(ListRequest $request)

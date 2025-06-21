@@ -34,6 +34,7 @@ class ChurchFactory extends Factory
             'confession_of_faith_count' => $this->faker->numberBetween(10, 1000),
             'baptism_count' => $this->faker->numberBetween(10, 1000),
             'parent_church_id' => Church::inRandomOrder()->value('id') ?? null,
+            'member_count_by_people_group' => $this->faker->boolean(50),
             'current_prayers' => $this->faker->paragraph(),
             'community_id' => Community::inRandomOrder()->value('id') ?? Community::factory(),
         ];

@@ -34,6 +34,8 @@ class ChurchRequest extends FormRequest
             'denomination_id' => 'nullable|integer|exists:denominations,id',
             'is_visited' => 'boolean',
             'church_members_count' => 'nullable|integer',
+            'member_count_by_people_group' => 'nullable | boolean',
+            'member_count_list_by_people_group' => 'nullable|array',
             'confession_of_faith_count' => 'nullable|integer',
             'baptism_count' => 'nullable|integer',
             'parent_church_id' => 'nullable|integer|exists:churches,id',

@@ -27,6 +27,7 @@ class Church extends Model
         'parent_church_id',
         'current_prayers',
         'church_members_count',
+        'member_count_by_people_group',
         'confession_of_faith_count',
         'baptism_count',
         'community_id',
@@ -35,6 +36,7 @@ class Church extends Model
     protected $casts = [
         'is_active' => 'boolean',
         'is_visited' => 'boolean',
+        'member_count_by_people_group' => 'boolean'
     ];
 
     public function assignedTo()
@@ -74,5 +76,10 @@ class Church extends Model
     public function community()
     {
         return $this->belongsTo(Community::class);
+    }
+
+    public function churchMembers()
+    {
+        return $this->hasMany(ChurchMember::class);
     }
 }

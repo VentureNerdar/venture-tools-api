@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ChurchFactorySeeder::class,
             ContactFactorySeeder::class,
             UserFactorySeeder::class,
+            ChurchMemberSeeder::class,
         ]);
 
         // Enable mass assignment restrictions

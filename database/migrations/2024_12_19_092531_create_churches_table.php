@@ -33,6 +33,7 @@ return new class extends Migration
             $table->boolean('is_visited')->default(false);
 
             $table->integer('church_members_count')->nullable();
+            $table->boolean('member_count_by_people_group')->default(false);
             $table->integer('confession_of_faith_count')->nullable();
             $table->integer('baptism_count')->nullable();
 

@@ -767,7 +767,7 @@ class TranslationSeeder extends Seeder
                 'ne' => 'चर्च। परिवर्तन आवश्यक छ'
             ],
             'church_members_count' => [
-                'en' =>  'Church members Count',
+                'en' =>  'Church members count',
                 'mm' => 'ဘုရားကျောင်းအဖွဲ့ဝင် အရေအတွက်',
                 'ne' => 'चर्चका सदस्यहरूको संख्या'
             ],
@@ -1854,6 +1854,11 @@ class TranslationSeeder extends Seeder
                 'en' => 'Go To Contact Profile',
                 'mm' => 'အဆက်အသွယ်အချက်အလက်သို့သွားရန်',
                 'ne' => 'सम्पर्क प्रोफाइलमा जानुहोस्'
+            ],
+            'member_count_by_people_group' => [
+                'en' => 'Member count by people group',
+                'mm' => 'လူမျိုးစုအားဖြင့် အဖွဲ့ဝင် အရေအတွက်',
+                'ne' => 'व्यक्ति समूह अनुसार सदस्य गणना'
             ]
 
 
