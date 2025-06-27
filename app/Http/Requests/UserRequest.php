@@ -50,6 +50,7 @@ class UserRequest extends FormRequest
             'last_login_at' => 'nullable|date',
             'preferred_language_id' => 'nullable|exists:system_languages,id',
             'contact_id' => 'nullable|exists:contacts,id',
+            'phone_number' => 'nullable|string',
         ];
     }
 }

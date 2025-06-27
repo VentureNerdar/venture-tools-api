@@ -6,6 +6,7 @@ use App\Http\Controllers\CommunicationPlatformController;
 use App\Http\Controllers\CommunityChecklistController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DenominationController;
 use App\Http\Controllers\FaithMilestoneController;
 use App\Http\Controllers\MovementController;
@@ -312,4 +313,13 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
     // e.o PRAYER PROMPTS
+
+    // DASHBOARD
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/church-member-count', [DashboardController::class, 'getChurchMemberCount'])
+            ->name('dashboard.churchMemberCount');
+        Route::get('/church-member-count-by-people-group', [DashboardController::class, 'getChurchMemberCountByPeopleGroup'])
+            ->name('dashboard.churchMemberCountByPeopleGroup');
+    });
+    // e.o DASHBOARD
 });

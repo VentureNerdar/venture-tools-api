@@ -38,6 +38,7 @@ class User extends Authenticatable
         'is_verified',
         'user_verifier_id',
         'contact_id',
+        'phone_number',
         'verified_at'
     ];
 
