@@ -36,9 +36,11 @@ class SettingsService
 
             $assignedToChurchPrayers = Church::whereIn('assigned_to', $movementUsers)
                 ->whereNotNull('current_prayers')
+                ->orderBy('created_at', 'desc')
                 ->get();
             $assignedToContactPrayers = Contact::where('assigned_to', $movementUsers)
                 ->whereNotNull('current_prayers')
+                ->orderBy('created_at', 'desc')
                 ->get();
         } elseif ($authUser->user_role_id === 4) { // if disciple maker
 
@@ -55,17 +57,21 @@ class SettingsService
 
             $assignedToChurchPrayers = Church::where('assigned_to', $authUser->id)
                 ->whereNotNull('current_prayers')
+                ->orderBy('created_at', 'desc')
                 ->get();
             $assignedToContactPrayers = Contact::where('assigned_to', $authUser->id)
                 ->whereNotNull('current_prayers')
+                ->orderBy('created_at', 'desc')
                 ->get();
         } elseif ($authUser->user_role_id === 1) {
             $allChurchPrayers = Church::whereNotNull('current_prayers')
                 ->where('current_prayers', '!=', '')
+                ->orderBy('created_at', 'desc')
                 ->get();
 
             $allContactPrayers = Contact::whereNotNull('current_prayers')
                 ->where('current_prayers', '!=', '')
+                ->orderBy('created_at', 'desc')
                 ->get();
         }
 
