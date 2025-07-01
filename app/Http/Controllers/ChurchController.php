@@ -26,6 +26,10 @@ class ChurchController extends Controller
 
     public function create(ChurchRequest $request)
     {
+        $request->merge([
+            'created_by' => Auth::user()->id,
+            'updated_by' => Auth::user()->id,
+        ]);
         $church = $this->service->save($this->model, null, $request->all())[0];
 
         $churchPlanters = $request->input('church_planters', []);
@@ -57,6 +61,9 @@ class ChurchController extends Controller
 
     public function update(ChurchRequest $request, $id)
     {
+        $request->merge([
+            'updated_by' => Auth::user()->id,
+        ]);
         $church = $this->service->save($this->model, $id, $request->all())[0];
         $churchPlanters = $request->input('church_planters', []);
         $church->churchPlanters()->delete();

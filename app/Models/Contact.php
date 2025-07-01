@@ -30,6 +30,8 @@ class Contact extends Model
         'current_prayers',
         'is_active',
         'user_profile_id',
+        'created_by',
+        'updated_by'
     ];
 
     protected $dates = [

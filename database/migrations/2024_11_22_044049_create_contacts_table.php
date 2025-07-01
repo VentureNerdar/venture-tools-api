@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('baptized_by_name', 300)->nullable();
 
             $table->text('current_prayers')->nullable();
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

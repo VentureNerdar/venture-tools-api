@@ -112,4 +112,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Contact::class, 'contact_id');
     }
+
+    public function movement()
+    {
+        return $this->belongsTo(Movement::class, 'movement_id');
+    }
 }

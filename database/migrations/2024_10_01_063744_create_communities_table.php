@@ -22,6 +22,7 @@ return new class extends Migration
             $table->json('google_location_data')->nullable();
             $table->boolean('conducted_survey_of_community_needs')->default(false);
             $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
             $table->text('community_needs_1')->nullable();
             $table->text('community_needs_2')->nullable();
             $table->text('community_needs_3')->nullable();

@@ -39,6 +39,8 @@ return new class extends Migration
 
             $table->foreignIdFor(Church::class, 'parent_church_id')->nullable();
             $table->text('current_prayers')->nullable();
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
 
             // Note : Need to add address location
 

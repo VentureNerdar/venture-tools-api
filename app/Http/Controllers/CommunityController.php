@@ -25,7 +25,9 @@ class CommunityController extends Controller
     public function create(CommunityRequest $request)
     {
         $data = $request->validated();
-        $community = $this->service->save($this->model, null, $request->validated())[0];
+        $data['created_by'] = Auth::user()->id;
+        $data['updated_by'] = Auth::user()->id;
+        $community = $this->service->save($this->model, null, $data)[0];
 
         // checklists
         $checklists = $data['checklists'] ?? [];
@@ -58,6 +60,7 @@ class CommunityController extends Controller
     public function update(CommunityRequest $request, $id)
     {
         $data = $request->validated();
+        $data['updated_by'] = Auth::user()->id;
         $community = $this->service->save($this->model, $id, $data)[0];
 
         // checklists

@@ -23,7 +23,8 @@ class Community extends Model
         'community_needs_3',
         'community_needs_4',
         'community_needs_5',
-        'created_by'
+        'created_by',
+        'updated_by'
     ];
 
     protected $casts = [

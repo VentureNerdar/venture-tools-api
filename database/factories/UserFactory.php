@@ -35,6 +35,8 @@ class UserFactory extends Factory
             'phone_number' => '+66' . random_int(100000000, 999999999),
             'biography' => fake()->paragraph(),
             'preferred_language_id' => random_int(1, 3),
+            'user_verifier_id' => random_int(1, 5),
+            'movement_id' => random_int(1, 2),
         ];
     }
 
@@ -43,7 +45,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

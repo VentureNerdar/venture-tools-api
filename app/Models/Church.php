@@ -31,6 +31,8 @@ class Church extends Model
         'confession_of_faith_count',
         'baptism_count',
         'community_id',
+        'created_by',
+        'updated_by'
     ];
 
     protected $casts = [

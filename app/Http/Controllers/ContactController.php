@@ -37,8 +37,10 @@ class ContactController extends Controller
 
     public function create(ContactRequest $request)
     {
-        $data = $request->validated();
 
+        $data = $request->validated();
+        $data['created_by'] = Auth::user()->id;
+        $data['updated_by'] = Auth::user()->id;
         if (isset($data['baptism_date']) && is_numeric($data['baptism_date'])) {
             // Dividing by 1000 to convert milliseconds to seconds
             $date = $data['baptism_date'];
@@ -90,6 +92,7 @@ class ContactController extends Controller
     public function update(ContactRequest $request, $id)
     {
         $data = $request->validated();
+        $data['updated_by'] = Auth::user()->id;
 
         if (isset($data['baptism_date']) && is_numeric($data['baptism_date'])) {
             // Dividing by 1000 to convert milliseconds to seconds
