@@ -17,6 +17,8 @@ class Community extends Model
         'location_longitude',
         'location_latitude',
         'google_location_data',
+        'province_id',
+        'district_id',
         'conducted_survey_of_community_needs',
         'community_needs_1',
         'community_needs_2',
@@ -31,6 +33,16 @@ class Community extends Model
         'conducted_survey_of_community_needs' => 'boolean',
         'is_active' => 'boolean',
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
 
     public function peacePersons()
     {

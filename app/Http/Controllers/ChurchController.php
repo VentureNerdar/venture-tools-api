@@ -7,6 +7,8 @@ use App\Http\Requests\ListRequest;
 use App\Models\Church;
 use App\Models\ChurchMember;
 use App\Models\ChurchPlanter;
+use App\Models\District;
+use App\Models\Province;
 use App\Models\User;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
@@ -26,11 +28,23 @@ class ChurchController extends Controller
 
     public function create(ChurchRequest $request)
     {
-        $request->merge([
-            'created_by' => Auth::user()->id,
-            'updated_by' => Auth::user()->id,
-        ]);
-        $church = $this->service->save($this->model, null, $request->all())[0];
+        $data = $request->all();
+
+        if (!empty($data['province_name'])) {
+            $province = Province::firstOrCreate([
+                'name' => $data['province_name']
+            ]);
+            $data['province_id'] = $province->id;
+        }
+        if (!empty($data['district_name'])) {
+            $district = District::firstOrCreate([
+                'name' => $data['district_name']
+            ]);
+            $data['district_id'] = $district->id;
+        }
+        $data['created_by'] = Auth::user()->id;
+        $data['updated_by'] = Auth::user()->id;
+        $church = $this->service->save($this->model, null, $data)[0];
 
         $churchPlanters = $request->input('church_planters', []);
 
@@ -61,10 +75,25 @@ class ChurchController extends Controller
 
     public function update(ChurchRequest $request, $id)
     {
-        $request->merge([
-            'updated_by' => Auth::user()->id,
-        ]);
-        $church = $this->service->save($this->model, $id, $request->all())[0];
+        // $request->merge([
+        //     'updated_by' => Auth::user()->id,
+        // ]);
+        $data = $request->all();
+        if (!empty($data['province_name'])) {
+            $province = Province::firstOrCreate([
+                'name' => $data['province_name']
+            ]);
+            $data['province_id'] = $province->id;
+        }
+        if (!empty($data['district_name'])) {
+            $district = District::firstOrCreate([
+                'name' => $data['district_name']
+            ]);
+            $data['district_id'] = $district->id;
+        }
+        $data['updated_by'] = Auth::user()->id;
+
+        $church = $this->service->save($this->model, $id, $data)[0];
         $churchPlanters = $request->input('church_planters', []);
         $church->churchPlanters()->delete();
         foreach ($churchPlanters as $planterData) {

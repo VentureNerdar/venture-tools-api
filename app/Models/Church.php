@@ -19,6 +19,8 @@ class Church extends Model
         'location_longitude',
         'location_latitude',
         'google_location_data',
+        'province_id',
+        'district_id',
         'founded_at',
         'phone_number',
         'website',
@@ -83,5 +85,15 @@ class Church extends Model
     public function churchMembers()
     {
         return $this->hasMany(ChurchMember::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
     }
 }

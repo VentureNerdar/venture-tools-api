@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommunityRequest;
 use App\Http\Requests\ListRequest;
 use App\Models\Community;
+use App\Models\District;
+use App\Models\Province;
 use App\Models\User;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
@@ -25,6 +27,18 @@ class CommunityController extends Controller
     public function create(CommunityRequest $request)
     {
         $data = $request->validated();
+        if (!empty($data['province_name'])) {
+            $province = Province::firstOrCreate([
+                'name' => $data['province_name']
+            ]);
+            $data['province_id'] = $province->id;
+        }
+        if (!empty($data['district_name'])) {
+            $district = District::firstOrCreate([
+                'name' => $data['district_name']
+            ]);
+            $data['district_id'] = $district->id;
+        }
         $data['created_by'] = Auth::user()->id;
         $data['updated_by'] = Auth::user()->id;
         $community = $this->service->save($this->model, null, $data)[0];
@@ -60,6 +74,18 @@ class CommunityController extends Controller
     public function update(CommunityRequest $request, $id)
     {
         $data = $request->validated();
+        if (!empty($data['province_name'])) {
+            $province = Province::firstOrCreate([
+                'name' => $data['province_name']
+            ]);
+            $data['province_id'] = $province->id;
+        }
+        if (!empty($data['district_name'])) {
+            $district = District::firstOrCreate([
+                'name' => $data['district_name']
+            ]);
+            $data['district_id'] = $district->id;
+        }
         $data['updated_by'] = Auth::user()->id;
         $community = $this->service->save($this->model, $id, $data)[0];
 
