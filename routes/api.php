@@ -316,10 +316,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // DASHBOARD
     Route::prefix('dashboard')->group(function () {
-        Route::get('/church-member-count', [DashboardController::class, 'getChurchMemberCount'])
-            ->name('dashboard.churchMemberCount');
-        Route::get('/church-member-count-by-people-group', [DashboardController::class, 'getChurchMemberCountByPeopleGroup'])
-            ->name('dashboard.churchMemberCountByPeopleGroup');
+        Route::get('/insight', [DashboardController::class, 'getInsightData'])
+            ->name('dashboard.insightData');
+        Route::get('/church-locations', [DashboardController::class, 'getLocationsOfChurch'])
+            ->name('dashboard.locationsOfChurch');
+        Route::get('/generational-churches-by-tree', [DashboardController::class, 'getGenerationalChurchesByTree'])
+            ->name('dashboard.generationalChurchesByTree');
+        Route::get('/generational-churches-by-graph', [DashboardController::class, 'getGenerationalChurchesByGraph'])
+            ->name('dashboard.generationalChurchesByGraph');
+        Route::get('/people-groups', [DashboardController::class, 'getPeopleGroups'])
+            ->name('dashboard.peopleGroups');
     });
     // e.o DASHBOARD
 });

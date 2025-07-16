@@ -6,90 +6,129 @@ use App\Models\Church;
 use App\Models\ChurchMember;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
+
+use App\Services\DashboardService;
 
 class DashboardController extends Controller
 {
+    protected $dashboardService;
 
-    public function getChurchMemberCount()
+    public function __construct(DashboardService $service)
+    {
+        $this->dashboardService = $service;
+    }
+
+    public function getInsightData()
+    {
+        $churchCount = $this->dashboardService->getChurchCount();
+        $avgChurchSize = $this->dashboardService->getAvgChurchSize();
+        $contactBaptizedCount = $this->dashboardService->getContactBaptizedCount();
+        $baptizedMemberCount = $this->dashboardService->getBaptizedMemberCount();
+        $provinces = $this->dashboardService->getProvinces();
+        $districts = $this->dashboardService->getDistricts();
+        $communities = $this->dashboardService->getCommunities();
+
+        return response()->json([
+            'church_count' => $churchCount,
+            'avg_church_size' => $avgChurchSize,
+            'contact_baptized_count' => $contactBaptizedCount,
+            'baptized_member_count' => $baptizedMemberCount,
+            'provinces' => $provinces,
+            'districts' => $districts,
+            'communities' => $communities,
+        ]);
+    }
+
+    public function getLocationsOfChurch()
     {
         $user = Auth::user();
-        $userRoleID = $user->user_role_id;
+        $churchIDs = $this->dashboardService->getChurchIDsForUser($user);
 
-        $churchIDs = null;
-
-        if ($userRoleID === 3) {
-            // Movement Leader
-            $discipleMakerIDs = User::where('movement_id', $user->movement_id)
-                ->where('user_role_id', 4)
-                ->pluck('id');
-
-            $churchIDs = Church::whereIn('assigned_to', $discipleMakerIDs)->pluck('id');
-        }
-
-        if ($userRoleID === 4) {
-            // Disciple Maker
-            $churchIDs = Church::where('assigned_to', $user->id)->pluck('id');
-        }
-
-        $query = Church::selectRaw('SUM(church_members_count) as amount');
+        $query = Church::select('location_latitude', 'location_longitude', 'name')
+            ->whereNotNull('location_latitude')
+            ->whereNotNull('location_longitude');
 
         if ($churchIDs !== null) {
             $query->whereIn('id', $churchIDs);
         }
 
-        $amountsByPeopleGroup = $query->get();
-
-        $result = $amountsByPeopleGroup->map(function ($item) {
+        $locations = $query->get()->map(function ($item) {
             return [
-                'total_amount' => (int) $item->amount,
+                'lat' => (float) $item->location_latitude,
+                'lng' => (float) $item->location_longitude,
+                'name' => $item->name,
             ];
         });
 
-        return response()->json($result);
+        return response()->json($locations);
     }
 
-    public function getChurchMemberCountByPeopleGroup()
+    public function getGenerationalChurchesByTree()
+    {
+        $rootUsers = User::whereNull('user_verifier_id')->get();
+        $tree = $rootUsers->map(function ($user) {
+            return $this->dashboardService->buildUserNode($user);
+        });
+
+        return response()->json($tree);
+    }
+
+
+    public function getGenerationalChurchesByGraph()
+    {
+        $users = User::select('id', 'name', 'user_verifier_id')->get();
+
+        $nodes = $users->map(function ($user) {
+            return [
+                'id' => (string) $user->id,
+                'name' => $user->name,
+                'value' => 1
+            ];
+        });
+
+        $links = $users->filter(fn($u) => $u->user_verifier_id !== null)
+            ->map(function ($user) {
+                return [
+                    'source' => (string) $user->user_verifier_id,
+                    'target' => (string) $user->id
+                ];
+            });
+
+        return response()->json([
+            'nodes' => $nodes->values(),
+            'links' => $links->values()
+        ]);
+    }
+
+    public function getPeopleGroups()
     {
         $user = Auth::user();
-        $userRoleID = $user->user_role_id;
+        $churchIDs = $this->dashboardService->getChurchIDsForUser($user);
 
-        $churchIDs = null;
-
-        if ($userRoleID === 3) {
-            // Movement Leader
-            $discipleMakerIDs = User::where('movement_id', $user->movement_id)
-                ->where('user_role_id', 4)
-                ->pluck('id');
-
-            $churchIDs = Church::whereIn('assigned_to', $discipleMakerIDs)->pluck('id');
-        }
-
-        if ($userRoleID === 4) {
-            // Disciple Maker
-            $churchIDs = Church::where('assigned_to', $user->id)->pluck('id');
-        }
-
-        $query = ChurchMember::with('peopleGroup')
-            ->select('people_group_id')
-            ->selectRaw('SUM(amount) as amount')
-            ->groupBy('people_group_id');
+        $query = ChurchMember::query();
 
         if ($churchIDs !== null) {
             $query->whereIn('church_id', $churchIDs);
         }
 
-        $amountsByPeopleGroup = $query->get();
+        $grouped = $query->get()->groupBy('people_group_id');
 
-        $result = $amountsByPeopleGroup->map(function ($item) {
+        $results = $grouped->map(function ($items, $groupId) {
+            $churchIds = $items->pluck('church_id')->unique();
+            $memberCount = $items->sum('amount');
+            $churchCount = $churchIds->count();
+            $baptismCount = Church::whereIn('id', $churchIds)->sum('baptism_count');
+            $groupName = $items->first()->peopleGroup->name;
+
             return [
-                'people_group_id' => $item->people_group_id,
-                'people_group_name' => $item->peopleGroup?->name,
-                'total_amount' => (int) $item->amount,
+                'people_group_id' => $groupId,
+                'name' => $groupName,
+                'member_count' => $memberCount,
+                'church_count' => $churchCount,
+                'baptism_count' => $baptismCount,
             ];
-        });
+        })->values();
 
-        return response()->json($result);
+        return $results;
     }
 }
