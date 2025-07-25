@@ -65,40 +65,71 @@ class DashboardController extends Controller
 
     public function getGenerationalChurchesByTree()
     {
-        $rootUsers = User::whereNull('user_verifier_id')->get();
-        $tree = $rootUsers->map(function ($user) {
-            return $this->dashboardService->buildUserNode($user);
-        });
+        $authUser = Auth::user();
+
+        if (in_array($authUser->user_role_id, [1, 2])) {
+            $rootUsers = User::whereNull('user_verifier_id')->get();
+            $tree = $rootUsers->map(function ($user) {
+                return $this->dashboardService->buildUserNode($user);
+            });
+        } else {
+            $tree = collect([
+                $this->dashboardService->buildUserNode($authUser)
+            ]);
+        }
 
         return response()->json($tree);
     }
 
-
     public function getGenerationalChurchesByGraph()
     {
-        $users = User::select('id', 'name', 'user_verifier_id')->get();
+        $authUser = Auth::user();
 
-        $nodes = $users->map(function ($user) {
-            return [
-                'id' => (string) $user->id,
-                'name' => $user->name,
-                'value' => 1
-            ];
-        });
+        $allUsers = User::select('id', 'name', 'user_verifier_id')->get();
 
-        $links = $users->filter(fn($u) => $u->user_verifier_id !== null)
-            ->map(function ($user) {
-                return [
-                    'source' => (string) $user->user_verifier_id,
-                    'target' => (string) $user->id
-                ];
-            });
+        if (in_array($authUser->user_role_id, [1, 2])) {
+            $filteredUsers = $allUsers;
+        } else {
+            $filteredUsers = collect();
+            $stack = collect([$authUser->id]);
+
+            while ($stack->isNotEmpty()) {
+                $currentId = $stack->pop();
+
+                $children = $allUsers->filter(fn($u) => $u->user_verifier_id == $currentId);
+
+                $filteredUsers = $filteredUsers->merge($children);
+                $stack = $stack->merge($children->pluck('id'));
+            }
+
+            $filteredUsers->push($authUser);
+            $filteredUsers = $filteredUsers->unique('id')->values();
+        }
+
+        $nodes = $filteredUsers->map(fn($user) => [
+            'id' => (string) $user->id,
+            'name' => $user->name,
+            'value' => 1,
+        ]);
+
+        $filteredIds = $filteredUsers->pluck('id')->toArray();
+        $links = $filteredUsers
+            ->filter(
+                fn($user) =>
+                $user->user_verifier_id !== null &&
+                    in_array($user->user_verifier_id, $filteredIds)
+            )
+            ->map(fn($user) => [
+                'source' => (string) $user->user_verifier_id,
+                'target' => (string) $user->id,
+            ]);
 
         return response()->json([
             'nodes' => $nodes->values(),
-            'links' => $links->values()
+            'links' => $links->values(),
         ]);
     }
+
 
     public function getPeopleGroups()
     {

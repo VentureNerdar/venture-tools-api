@@ -34,6 +34,19 @@ class DashboardService
 
         return null;
     }
+
+    public function getLocationsIDs(User $user, $locationType)
+    {
+        $roleID = $user->user_role_id;
+        if ($roleID === 3) {
+            $discipleMakerIDs = User::where('movement_id', $user->movement_id)
+                ->where('user_role_id', 4)
+                ->pluck('id');
+            return Church::whereIn('assigned_to', $discipleMakerIDs)->pluck($locationType)->unique();
+        } else if ($roleID === 4) {
+            return Church::where('assigned_to', $user->id)->pluck($locationType)->unique();
+        }
+    }
     public function buildUserNode(User $user)
     {
         $children = User::where('user_verifier_id', $user->id)->get();
@@ -90,9 +103,30 @@ class DashboardService
 
     public function getContactBaptizedCount()
     {
-        $contactBaptizedCount = Contact::whereNotNull('baptized_by')
-            ->orWhereNotNull('baptized_by_name')
-            ->count();
+        $user = Auth::user();
+        $contactBaptizedCount = 0;
+        if ($user->user_role_id == 4) {
+            $contactBaptizedCount = Contact::where(function ($query) {
+                $query->whereNotNull('baptized_by')
+                    ->orWhereNotNull('baptized_by_name');
+            })
+                ->where('assigned_to', $user->id)
+                ->count();
+        } elseif ($user->user_role_id == 3) {
+            $discipleMakerIDs = User::where('movement_id', $user->movement_id)
+                ->where('user_role_id', 4)
+                ->pluck('id');
+            $contactBaptizedCount = Contact::where(function ($query) {
+                $query->whereNotNull('baptized_by')
+                    ->orWhereNotNull('baptized_by_name');
+            })
+                ->whereIn('assigned_to', $discipleMakerIDs)
+                ->count();
+        } else {
+            $contactBaptizedCount = Contact::whereNotNull('baptized_by')
+                ->orWhereNotNull('baptized_by_name')
+                ->count();
+        }
         return $contactBaptizedCount;
     }
 
@@ -114,18 +148,39 @@ class DashboardService
 
     public function getProvinces()
     {
-        $provinces = Province::count();
+        $user = Auth::user();
+        $locationIDs = $this->getLocationsIDs($user, 'province_id');
+
+        if ($locationIDs === null) {
+            return Province::count();
+        }
+        $provinces = Province::whereIn('id', $locationIDs)->count();
         return $provinces;
     }
 
     public function getDistricts()
     {
-        $districts = District::count();
+        $user = Auth::user();
+        $locationIDs = $this->getLocationsIDs($user, 'district_id');
+
+        if ($locationIDs === null) {
+            return District::count();
+        }
+        $districts = District::whereIn('id', $locationIDs)->count();
         return $districts;
     }
 
     public function getCommunities()
     {
+        $user = Auth::user();
+        if ($user->user_role_id == 3) {
+            $discipleMakerIDs = User::where('movement_id', $user->movement_id)
+                ->where('user_role_id', 4)
+                ->pluck('id');
+            return Community::whereIn('created_by', $discipleMakerIDs)->count();
+        } else if ($user->user_role_id == 4) {
+            return Community::where('created_by', $user->id)->count();
+        }
         $communities = Community::count();
         return $communities;
     }
