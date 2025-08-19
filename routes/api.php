@@ -230,6 +230,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('settings')->group(function () {
         Route::get('/statuses', [SettingController::class, 'browseStatuses'])->name('setting.browseStatuses');
         Route::get('/prayers', [SettingController::class, 'getPrayers'])->name('setting.getPrayers');
+        Route::prefix('ishare')->group(function () {
+            Route::get('get', [SettingController::class, 'getiShareAPISettings'])->name('setting.getiShareAPISettings');
+            Route::post('save', [SettingController::class, 'saveiShareAPISettings'])->name('setting.saveiShareAPISettings');
+        });
     }); // e.o SETTINGS
 
     // PROFILE

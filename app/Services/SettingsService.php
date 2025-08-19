@@ -6,7 +6,16 @@ use App\Models\User;
 use App\Models\Church;
 use App\Models\ChurchPlanter;
 use App\Models\Contact;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
+enum iShareAPISettingName: string
+{
+    case UserName = 'iShareAPIUserName';
+    case Secret = 'iShareAPISecret';
+    case URL = 'iShareAPIURL';
+}
 
 class SettingsService
 {
@@ -86,5 +95,25 @@ class SettingsService
                 ...($allContactPrayers ?? [])
             ],
         ];
+    }
+
+    public function getiShareAPISettings()
+    {
+        return Setting::where('name', 'like', 'iShareAPI%')->get();
+    }
+
+    public function saveiShareAPISetting($settingName, $value)
+    {
+        try {
+            Setting::updateOrCreate(
+                ['name' => $settingName],
+                ['value' => json_encode($value)]
+            );
+
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 }
