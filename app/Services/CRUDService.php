@@ -103,19 +103,35 @@ class CRUDService
         }
     }
 
-    public function list($model, $labelOption = 'name', $limit = 10)
+
+    public function list($model, $labelOption = 'name', $limit = 10, $existingID = null)
     {
         try {
             $query = $model::query()
                 ->select(['id as value', $labelOption . ' as label'])
-                ->limit($limit);
+                ->orderBy('id', 'desc');
 
             // exclude some user roles
             if ($model === User::class) {
                 $query->whereNotIn('user_role_id', [1, 2, 5]);
             }
 
-            return [$query->get(), 200];
+            // fetch limited rows
+            $rows = $query->limit($limit)->get()->toArray();
+
+            // if existingID is provided and not in the fetched rows, append it
+            if ($existingID !== null && !collect($rows)->contains('value', $existingID)) {
+                $existingRow = $model::query()
+                    ->select(['id as value', $labelOption . ' as label'])
+                    ->where('id', $existingID)
+                    ->first();
+
+                if ($existingRow) {
+                    $rows[] = $existingRow->toArray();
+                }
+            }
+
+            return [$rows, 200];
         } catch (\Throwable $e) {
             return [$e->getMessage(), 500];
         }

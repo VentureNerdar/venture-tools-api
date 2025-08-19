@@ -42,7 +42,7 @@ class MovementController extends Controller
     {
         $data = $request->validated();
 
-        return response()->json(...$this->service->list($this->model, $data['labelOption'] ?? null, $data['limit'] ?? 10));
+        return response()->json(...$this->service->list($this->model, $data['labelOption'] ?? null, $data['limit'] ?? 10, $data['existingID'] ?? null));
     }
 
     public function delete($id, Request $request)

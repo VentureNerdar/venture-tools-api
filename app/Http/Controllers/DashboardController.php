@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Church;
 use App\Models\ChurchMember;
+use App\Models\PeopleGroup;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +28,7 @@ class DashboardController extends Controller
         $provinces = $this->dashboardService->getProvinces();
         $districts = $this->dashboardService->getDistricts();
         $communities = $this->dashboardService->getCommunities();
+        $peopleGroups = PeopleGroup::count();
 
         return response()->json([
             'church_count' => $churchCount,
@@ -36,6 +38,7 @@ class DashboardController extends Controller
             'provinces' => $provinces,
             'districts' => $districts,
             'communities' => $communities,
+            'people_groups' => $peopleGroups
         ]);
     }
 

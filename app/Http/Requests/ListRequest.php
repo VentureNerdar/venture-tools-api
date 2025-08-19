@@ -24,11 +24,12 @@ class ListRequest extends FormRequest
         return [
             'labelOption' => 'nullable|string',
             'limit' => 'nullable|integer',
+            'existingID' => 'nullable|integer'
         ];
     }
 
     protected function prepareForValidation()
     {
-        $this->replace($this->only(['labelOption', 'limit']));
+        $this->replace($this->only(['labelOption', 'limit', 'existingID']));
     }
 }
