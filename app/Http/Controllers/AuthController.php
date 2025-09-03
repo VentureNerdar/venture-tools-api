@@ -43,6 +43,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->identifier)
             ->orWhere('phone_number', $request->identifier)
+            ->orWhere('username', $request->identifier)
             ->first();
 
         // User not found
