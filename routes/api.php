@@ -13,6 +13,7 @@ use App\Http\Controllers\MovementController;
 use App\Http\Controllers\MovementNotificationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PeopleGroupController;
+use App\Http\Controllers\PrayerCountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SystemLanguageController;
@@ -332,4 +333,10 @@ Route::middleware('auth:sanctum')->group(function () {
             ->name('dashboard.peopleGroups');
     });
     // e.o DASHBOARD
+
+    // Prayer Count
+    Route::prefix('prayer-count')->group(function () {
+        Route::post('/church', [PrayerCountController::class, 'createChurchPrayerCount'])->name('prayerCount.church');
+        Route::post('/contact', [PrayerCountController::class, 'createContactPrayerCount'])->name('prayerCount.contact');
+    });
 });
