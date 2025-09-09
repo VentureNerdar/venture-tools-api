@@ -9,6 +9,7 @@ use App\Models\ChurchPrayerCount;
 use App\Models\Contact;
 use App\Models\ContactPrayerCount;
 use App\Models\Setting;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -21,7 +22,7 @@ enum iShareAPISettingName: string
 
 class SettingsService
 {
-    public function getChurchPlanterPrayers()
+    public function getChurchPlanterPrayers(Request $request)
     {
         // Always initialize as arrays
         $churchPlanterPrayers = [];
@@ -30,6 +31,7 @@ class SettingsService
         $allChurchPrayers = [];
         $allContactPrayers = [];
         $authUser = Auth::user();
+        $perPage = $request->with;
 
         if ($authUser->user_role_id === 3) { // if movement leader
             $movementUsers = User::where('movement_id', $authUser->movement_id)->get()->pluck('id')->toArray();
@@ -42,38 +44,48 @@ class SettingsService
             Log::info("churchIDs", ['churchIds' => $churchIds]);
 
             $churchPlanterPrayers = Church::whereIn('id', $churchIds)
-                ->get()
-                ->map(function ($church) use ($authUser) {
-                    $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
-                    $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $church;
-                });
-
+                ->orderBy('id', 'desc')
+                ->paginate($perPage);
+            $churchPlanterPrayers->getCollection()->transform(function ($church) use ($authUser) {
+                $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
+                $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $church;
+            });
 
             $assignedToChurchPrayers = Church::whereIn('assigned_to', $movementUsers)
                 ->whereNotNull('current_prayers')
                 ->orderBy('created_at', 'desc')
-                ->get()
-                ->map(function ($church) use ($authUser) {
-                    $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
-                    $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $church;
-                });
+                ->paginate($perPage);
+
+            $assignedToChurchPrayers->getCollection()->transform(function ($church) use ($authUser) {
+                $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
+                $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $church;
+            });
+            // ->map(function ($church) use ($authUser) {
+            //     $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
+            //     $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
+            //         ->where('user_id', $authUser->id)
+            //         ->exists();
+            //     return $church;
+            // });
+
+
             $assignedToContactPrayers = Contact::where('assigned_to', $movementUsers)
                 ->whereNotNull('current_prayers')
-                ->orderBy('created_at', 'desc')
-                ->get()
-                ->map(function ($contact) use ($authUser) {
-                    $contact->prayer_count = ContactPrayerCount::where('contact_id', $contact->id)->count();
-                    $contact->user_has_prayed = ContactPrayerCount::where('contact_id', $contact->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $contact;
-                });
+                ->orderBy('id', 'desc')
+                ->paginate($perPage);
+            $assignedToContactPrayers->getCollection()->transform(function ($contact) use ($authUser) {
+                $contact->prayer_count = ContactPrayerCount::where('contact_id', $contact->id)->count();
+                $contact->user_has_prayed = ContactPrayerCount::where('contact_id', $contact->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $contact;
+            });
         } elseif ($authUser->user_role_id === 4) { // if disciple maker
 
             $churchIds = ChurchPlanter::whereHas('user', function ($query) use ($authUser) {
@@ -84,61 +96,68 @@ class SettingsService
                 ->toArray();
 
             $churchPlanterPrayers = Church::whereIn('id', $churchIds)
-                ->get()
-                ->map(function ($church) use ($authUser) {
-                    $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
-                    $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $church;
-                });
+                ->orderBy('id', 'desc')
+                ->paginate($perPage);
+
+            $churchPlanterPrayers->getCollection()->transform(function ($church) use ($authUser) {
+                $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
+                $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $church;
+            });
+
 
             $assignedToChurchPrayers = Church::where('assigned_to', $authUser->id)
                 ->whereNotNull('current_prayers')
-                ->orderBy('created_at', 'desc')
-                ->get()
-                ->map(function ($church) use ($authUser) {
-                    $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
-                    $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $church;
-                });
+                ->orderBy('id', 'desc')
+                ->paginate($perPage);
+
+            $assignedToChurchPrayers->getCollection()->transform(function ($church) use ($authUser) {
+                $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
+                $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $church;
+            });
+
             $assignedToContactPrayers = Contact::where('assigned_to', $authUser->id)
                 ->whereNotNull('current_prayers')
-                ->orderBy('created_at', 'desc')
-                ->get()
-                ->map(function ($contact) use ($authUser) {
-                    $contact->prayer_count = ContactPrayerCount::where('contact_id', $contact->id)->count();
-                    $contact->user_has_prayed = ContactPrayerCount::where('contact_id', $contact->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $contact;
-                });
+                ->orderBy('id', 'desc')
+                ->paginate($perPage);
+
+            $assignedToContactPrayers->getCollection()->transform(function ($contact) use ($authUser) {
+                $contact->prayer_count = ContactPrayerCount::where('contact_id', $contact->id)->count();
+                $contact->user_has_prayed = ContactPrayerCount::where('contact_id', $contact->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $contact;
+            });
         } elseif ($authUser->user_role_id === 1) {
             $allChurchPrayers = Church::whereNotNull('current_prayers')
                 ->where('current_prayers', '!=', '')
-                ->orderBy('created_at', 'desc')
-                ->get()
-                ->map(function ($church) use ($authUser) {
-                    $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
-                    $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $church;
-                });
+                ->orderBy('id', 'desc')
+                ->paginate($perPage);
+
+            $allChurchPrayers->getCollection()->transform(function ($church) use ($authUser) {
+                $church->prayer_count = ChurchPrayerCount::where('church_id', $church->id)->count();
+                $church->user_has_prayed = ChurchPrayerCount::where('church_id', $church->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $church;
+            });
 
             $allContactPrayers = Contact::whereNotNull('current_prayers')
                 ->where('current_prayers', '!=', '')
-                ->orderBy('created_at', 'desc')
-                ->get()
-                ->map(function ($contact) use ($authUser) {
-                    $contact->prayer_count = ContactPrayerCount::where('contact_id', $contact->id)->count();
-                    $contact->user_has_prayed = ContactPrayerCount::where('contact_id', $contact->id)
-                        ->where('user_id', $authUser->id)
-                        ->exists();
-                    return $contact;
-                });
+                ->orderBy('id', 'desc')
+                ->paginate($perPage);
+            $allContactPrayers->getCollection()->transform(function ($contact) use ($authUser) {
+                $contact->prayer_count = ContactPrayerCount::where('contact_id', $contact->id)->count();
+                $contact->user_has_prayed = ContactPrayerCount::where('contact_id', $contact->id)
+                    ->where('user_id', $authUser->id)
+                    ->exists();
+                return $contact;
+            });
         }
 
         return [

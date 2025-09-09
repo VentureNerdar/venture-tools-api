@@ -22,7 +22,7 @@ class ContactPrayerCountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contact_id' => 'required|integer|exists:churches,id',
+            'contact_id' => 'required|integer|exists:contacts,id',
         ];
     }
 }
