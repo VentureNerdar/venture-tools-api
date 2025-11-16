@@ -13,6 +13,8 @@ use App\Models\User;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ChurchController extends Controller
 {
@@ -210,5 +212,44 @@ class ChurchController extends Controller
         }
 
         return response()->json($churchPlanters, 201);
+    }
+
+    public function getChurchCsv(): StreamedResponse
+    {
+        $fileName = 'users.csv';
+        $users = DB::table('users')->select('id', 'name', 'email')->get();
+
+        $headers = [
+            "Content-Type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+        ];
+
+        $columns = ['ID', 'Name', 'Email'];
+
+        $callback = function () use ($users, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($users as $user) {
+                fputcsv($file, [(string) $user->id, $user->name, $user->email]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+        // $churches = Church::all();
+
+        // $handle = fopen('php://temp', 'w');
+        // fputcsv($handle, ['ID', 'Name', 'Address', 'Pastor']);
+
+        // foreach ($churches as $church) {
+        //     fputcsv($handle, [
+        //         $church->id,
+        //         $church->name,
+        //         $church->address,
+        //         $church->pastor
+        //     ]);
+        // }
     }
 }

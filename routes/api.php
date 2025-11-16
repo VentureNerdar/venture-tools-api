@@ -25,6 +25,8 @@ use App\Http\Controllers\PrayerPromptController;
 use Illuminate\Support\Facades\Route;
 
 // Route::post('register', [UserController::class, 'register'])->name('user.register');
+Route::get('languages', [SystemLanguageController::class, 'browse'])->name('language.browse');
+Route::get('languages/words', [SystemLanguageWordController::class, 'browse'])->name('language_word.browse');
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::prefix('registration')->group(function () {
@@ -85,7 +87,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // LANGUAGES
     Route::prefix('languages')->group(function () {
-        Route::get('/', [SystemLanguageController::class, 'browse'])->name('language.browse');
+        // Route::get('/', [SystemLanguageController::class, 'browse'])->name('language.browse');
         Route::post('/', [SystemLanguageController::class, 'create'])->name('language.create');
 
         Route::prefix('id/{id}')->group(function () {
@@ -97,7 +99,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
         // WORDS
         Route::prefix('words')->group(function () {
-            Route::get('/', [SystemLanguageWordController::class, 'browse'])->name('language_word.browse');
             Route::post('/', [SystemLanguageWordController::class, 'create'])->name('language_word.create');
 
             Route::prefix('id/{id}')->group(function () {
@@ -202,6 +203,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [ChurchController::class, 'create'])->name('church.create');
         Route::get('/list', [ChurchController::class, 'list'])->name('church.list');
         Route::post('/planters', [ChurchController::class, 'createChurchPlanters'])->name('church.planters.create');
+
+        Route::get('/get-csv', [ChurchController::class, 'getChurchCsv'])->name('church.getCsv');
 
         Route::prefix('id/{id}')->group(function () {
             Route::put('/', [ChurchController::class, 'update'])->name('church.update');
