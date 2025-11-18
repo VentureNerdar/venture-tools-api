@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'username' => fake()->unique()->userName(),
+            // 'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('demodemo'),
@@ -37,6 +37,7 @@ class UserFactory extends Factory
             'preferred_language_id' => random_int(1, 3),
             'user_verifier_id' => random_int(1, 5),
             'movement_id' => random_int(1, 2),
+            'first_time_login' => false,
         ];
     }
 

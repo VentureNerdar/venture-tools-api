@@ -25,7 +25,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
+
         'email',
         'email_verified_at',
         'password',
@@ -33,6 +33,7 @@ class User extends Authenticatable
         'movement_id',
         'is_active',
         'biography',
+        'first_time_login',
         'last_login_at',
         'preferred_language_id',
         'is_verified',
@@ -69,6 +70,7 @@ class User extends Authenticatable
             'password' => 'hashed',
             'is_active' => 'boolean',
             'is_verified' => 'boolean',
+            'first_time_login' => 'boolean',
             'updated_at' => 'date',
         ];
     }

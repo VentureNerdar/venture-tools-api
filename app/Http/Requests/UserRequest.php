@@ -24,12 +24,12 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'username' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('users', 'username')->ignore($this->route('id')),
-            ],
+            // 'username' => [
+            //     'required',
+            //     'string',
+            //     'max:255',
+            //     Rule::unique('users', 'username')->ignore($this->route('id')),
+            // ],
             // 'email' => 'required|string|email|unique:users,email',
             // 'password' => 'required|min:8|confirmed',
             'email' => [
@@ -37,6 +37,13 @@ class UserRequest extends FormRequest
                 'string',
                 'email',
                 Rule::unique('users', 'email')->ignore($this->route('id')),
+            ],
+
+            'phone_number' => [
+                'required',
+                'string',
+                Rule::unique('users', 'phone_number')->ignore($this->route('id')),
+
             ],
             'password' => [
                 'sometimes',
@@ -50,7 +57,7 @@ class UserRequest extends FormRequest
             'last_login_at' => 'nullable|date',
             'preferred_language_id' => 'nullable|exists:system_languages,id',
             'contact_id' => 'nullable|exists:contacts,id',
-            'phone_number' => 'nullable|string',
+            'first_time_login' => 'required|boolean'
         ];
     }
 }

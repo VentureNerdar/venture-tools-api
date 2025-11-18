@@ -51,6 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [UserController::class, 'browse'])->name('user.browse');
         Route::post('/', [UserController::class, 'create'])->name('user.create');
         Route::get('/list', [UserController::class, 'list'])->name('user.list');
+        Route::post('/update-login', [UserController::class, 'updateFirstTimeLogin'])->name('user.updateLogin');
 
         // Device management routes
 

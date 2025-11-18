@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         foreach ($users as $user) {
             User::firstOrCreate([
                 'name' => $user[0],
-                'username' => $user[1],
+                // 'username' => $user[1],
                 'email' => $user[1] . '@demo.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('demodemo'),
@@ -34,6 +34,7 @@ class UserSeeder extends Seeder
                 'movement_id' => random_int(1, 2),
                 'phone_number' => '+66' . random_int(100000000, 999999999),
                 'biography' => $user[3],
+                'first_time_login' => false,
             ]);
         }
     }

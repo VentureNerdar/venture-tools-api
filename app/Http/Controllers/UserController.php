@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\User;
 use App\Services\CRUDService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request as RequestFacade;
 
@@ -187,6 +188,18 @@ class UserController extends Controller
             'message' => 'Device updated successfully',
             'device' => $device,
         ]);
+    }
+
+    /**
+     * Update First Time Login 
+     */
+
+    public function updateFirstTimeLogin()
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user->update(['first_time_login' => false]);
+        return response()->json($user);
     }
 
     /**
