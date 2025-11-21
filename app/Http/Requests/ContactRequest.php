@@ -33,7 +33,7 @@ class ContactRequest extends FormRequest
             'baptized_by_name' => 'nullable|string|max:255',
             'current_prayers' => 'nullable|string',
             // 'contact_status_id' => 'required|exists:statuses,id',
-            'faith_status_id' => 'required|exists:statuses,id',
+            'position_id' => 'required|exists:statuses,id',
             'assigned_to' => 'nullable|exists:users,id',
             'coached_by' => 'nullable|exists:contacts,id',
             'people_group' => 'nullable|array',

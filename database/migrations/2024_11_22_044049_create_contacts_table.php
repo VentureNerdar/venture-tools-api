@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id();
             // $table->foreignIdFor(Status::class, 'contact_status_id');
             $table->foreignIdFor(User::class, 'assigned_to')->nullable();
-            $table->foreignIdFor(Status::class, 'faith_status_id');
+            $table->foreignIdFor(Status::class, 'position_id');
             $table->foreignIdFor(Contact::class, 'coached_by')->nullable();
             $table->foreignIdFor(User::class, 'user_profile_id')->nullable();
 

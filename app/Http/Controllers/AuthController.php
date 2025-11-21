@@ -54,14 +54,14 @@ class AuthController extends Controller
         }
 
         // If Mobile
-        if ($request->platform === 'mobile') {
-            // if user not church planter / deciple maker
-            if ($user->user_role_id !== 4) {
-                return response([
-                    'message' => ['Only Disciple Makers are to use from mobile platform.'],
-                ], 422);
-            }
-        }
+        // if ($request->platform === 'mobile') {
+        //     // if user not church planter / deciple maker
+        //     if ($user->user_role_id !== 4) {
+        //         return response([
+        //             'message' => ['Only Disciple Makers are to use from mobile platform.'],
+        //         ], 422);
+        //     }
+        // }
 
         // Wrong Password
         if (! Hash::check($request->password, $user->password)) {

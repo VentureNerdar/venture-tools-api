@@ -14,7 +14,7 @@ class Contact extends Model
 
     protected $fillable = [
         // 'contact_status_id',
-        'faith_status_id',
+        'position_id',
         'assigned_to',
         'coached_by',
         'name',
@@ -50,9 +50,9 @@ class Contact extends Model
         return $this->belongsTo(Status::class, 'contact_status_id');
     }
 
-    public function faithStatus()
+    public function position()
     {
-        return $this->belongsTo(Status::class, 'faith_status_id');
+        return $this->belongsTo(Status::class, 'position_id');
     }
 
     public function assignedTo()

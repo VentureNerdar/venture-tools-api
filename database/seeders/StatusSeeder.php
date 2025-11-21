@@ -24,10 +24,13 @@ class StatusSeeder extends Seeder
                 'Active',
                 'Inactive'
             ],
-            'faith_status' => [
+            'position' => [
+                'Person of Peace',
+                'Believer',
                 'Disciple',
                 'Leader',
-                'Disciple Maker'
+                'Disciple Maker',
+                'Church Planter'
             ],
         ];
 

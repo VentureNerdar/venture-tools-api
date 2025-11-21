@@ -1439,10 +1439,20 @@ class TranslationSeeder extends Seeder
                 'mm' => 'ယုံကြည်ခြင်းအခြေအနေကို ရွေးချယ်ပါ',
                 'ne' => 'विश्वास स्थिति छनौट गर्नुहोस्'
             ],
+            'choose_position' => [
+                'en' => 'Choose Position',
+                'mm' => 'အခန်းကဏ္ဍကို ရွေးချယ်ပါ',
+                'ne' => 'स्थान छनौट गर्नुहोस्',
+            ],
             'statuses' => [
                 'en' =>  'Statuses',
                 'mm' => 'အခြေအနေများ',
                 'ne' => 'स्थितिहरू'
+            ],
+            'position' => [
+                'en' => 'Position',
+                'mm' => 'အခန်းကဏ္ဍ',
+                'ne' => 'स्थिति',
             ],
             'general_infromation' => [
                 'en' => 'General Information',
