@@ -10,7 +10,7 @@ class PeopleGroupSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run() : void
+    public function run(): void
     {
         $groups = [
             'Chamar (Hindu traditions)',
@@ -19,7 +19,8 @@ class PeopleGroupSeeder extends Seeder
             'Darjee',
             'Dhanuk Dhankar',
             'Jat (Hindu Traditions)',
-            'Kami', 'Koiri (Hindu traditions)',
+            'Kami',
+            'Koiri (Hindu traditions)',
             'Magar',
             'Majhi',
             'Newar',
@@ -41,7 +42,8 @@ class PeopleGroupSeeder extends Seeder
             'Yadav Gualbans (Hindu traditions)',
             'Yadav Rawat',
             'Yamphu',
-            'Yehlmo'
+            'Yehlmo',
+            'Other'
         ];
 
         foreach ($groups as $group) {

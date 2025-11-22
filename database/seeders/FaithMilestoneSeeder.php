@@ -10,21 +10,21 @@ class FaithMilestoneSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run() : void
+    public function run(): void
     {
         //
         $milestones = [
+            ['name' => 'Starting Churches', 'icon' => 'starting-church'],
+            ['name' => 'Making Disciples', 'icon' => 'baptizing'],
+            ['name' => 'Can Share Gospel', 'icon' => 'share-gospel'],
+            ['name' => 'Baptized', 'icon' => 'baptized'],
+            ['name' => 'In Church / Group', 'icon' => 'church'],
+            ['name' => 'States Belief', 'icon' => 'testimony'],
+            ['name' => 'Reading Bible', 'icon' => 'reading-bible'],
             [
                 'name' => 'Has Bible',
                 'icon' => 'bible',
             ],
-            ['name' => 'Reading Bible', 'icon' => 'reading-bible'],
-            ['name' => 'States Belief', 'icon' => 'testimony'],
-            ['name' => 'Can Share Gospel', 'icon' => 'share-gospel'],
-            ['name' => 'Baptized', 'icon' => 'baptized'],
-            ['name' => 'Baptizing', 'icon' => 'baptizing'],
-            ['name' => 'In Church / Group', 'icon' => 'church'],
-            ['name' => 'Starting Churches', 'icon' => 'starting-church']
         ];
 
         foreach ($milestones as $milestone) {

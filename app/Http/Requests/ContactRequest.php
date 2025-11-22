@@ -32,6 +32,7 @@ class ContactRequest extends FormRequest
             'baptized_by' => 'nullable|exists:contacts,id',
             'baptized_by_name' => 'nullable|string|max:255',
             'current_prayers' => 'nullable|string',
+            'note' => 'nullable|string',
             // 'contact_status_id' => 'required|exists:statuses,id',
             'position_id' => 'required|exists:statuses,id',
             'assigned_to' => 'nullable|exists:users,id',

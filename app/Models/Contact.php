@@ -28,6 +28,7 @@ class Contact extends Model
         'baptized',
 
         'current_prayers',
+        'note',
         'is_active',
         'user_profile_id',
         'created_by',

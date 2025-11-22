@@ -1869,8 +1869,22 @@ class TranslationSeeder extends Seeder
                 'en' => 'Member count by people group',
                 'mm' => 'လူမျိုးစုအားဖြင့် အဖွဲ့ဝင် အရေအတွက်',
                 'ne' => 'व्यक्ति समूह अनुसार सदस्य गणना'
+            ],
+            'general_information' => [
+                'en' => 'General information',
+                'mm' => 'အထွေထွေသတင်းအချက်အလက်',
+                'ne' => 'सामान्य जानकारी'
+            ],
+            'note' => [
+                'en' => 'Note',
+                'mm' => 'မှတ်ချက်',
+                'ne' => 'नोट'
+            ],
+            'enter_note' => [
+                'en' => 'Enter note',
+                'mm' => "မှတ်ချက် ထည့်ရန်",
+                'ne' => 'नोट प्रविष्ट गर्नुहोस्'
             ]
-
 
         ];
 
