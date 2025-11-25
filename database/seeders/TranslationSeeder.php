@@ -1884,6 +1884,11 @@ class TranslationSeeder extends Seeder
                 'en' => 'Enter note',
                 'mm' => "မှတ်ချက် ထည့်ရန်",
                 'ne' => 'नोट प्रविष्ट गर्नुहोस्'
+            ],
+            'choose_church_planter' => [
+                'en' => 'Choose church planter',
+                'mm' => 'ဘုရားကျောင်းတည်ထောင်သူကိုရွေးချယ်ပါ',
+                'ne' => 'चर्च प्लाटर छान्नुहोस्'
             ]
 
         ];

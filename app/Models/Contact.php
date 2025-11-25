@@ -85,7 +85,7 @@ class Contact extends Model
 
     public function baptizedBy()
     {
-        return $this->belongsTo(Contact::class, 'baptized_by');
+        return $this->belongsTo(User::class, 'baptized_by');
     }
 
     public function baptized()

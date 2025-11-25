@@ -29,7 +29,7 @@ class ContactRequest extends FormRequest
             'gender' => ['required', 'in:male,female'],
             'age' => ['required', 'in:' . implode(',', AgeGroup::values())],
             'baptism_date' => ['nullable', 'date'],
-            'baptized_by' => 'nullable|exists:contacts,id',
+            'baptized_by' => 'nullable|exists:users,id',
             'baptized_by_name' => 'nullable|string|max:255',
             'current_prayers' => 'nullable|string',
             'note' => 'nullable|string',
