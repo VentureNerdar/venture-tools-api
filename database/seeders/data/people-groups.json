@@ -1,0 +1,786 @@
+[
+  {
+    "name": "Abdul",
+    "rop3_code": "111252"
+  },
+  {
+    "name": "Adibasi Janajati",
+    "rop3_code": "115688"
+  },
+  {
+    "name": "Amat",
+    "rop3_code": "111315"
+  },
+  {
+    "name": "Ansari",
+    "rop3_code": "111334"
+  },
+  {
+    "name": "Ath Pahariya",
+    "rop3_code": "100597"
+  },
+  {
+    "name": "Badhai (Hindu traditions)",
+    "rop3_code": "111468"
+  },
+  {
+    "name": "Badhai (Muslim traditions)",
+    "rop3_code": "111469"
+  },
+  {
+    "name": "Badhi (Hindu traditions)",
+    "rop3_code": "111398"
+  },
+  {
+    "name": "Baghban (Muslim traditions)",
+    "rop3_code": "111409"
+  },
+  {
+    "name": "Baha'i",
+    "rop3_code": "100760"
+  },
+  {
+    "name": "Bahing",
+    "rop3_code": "108438"
+  },
+  {
+    "name": "Bahna (Hindu traditions)",
+    "rop3_code": "115836"
+  },
+  {
+    "name": "Bairagi (Hindu traditions)",
+    "rop3_code": "111424"
+  },
+  {
+    "name": "Bangali (Hindu traditions)",
+    "rop3_code": "111656"
+  },
+  {
+    "name": "Bania Agarwal",
+    "rop3_code": "115140"
+  },
+  {
+    "name": "Bania Agrahari",
+    "rop3_code": "115141"
+  },
+  {
+    "name": "Bania Kasaundhan",
+    "rop3_code": "115155"
+  },
+  {
+    "name": "Bania Khatri",
+    "rop3_code": "115157"
+  },
+  {
+    "name": "Bania Rauniar",
+    "rop3_code": "115174"
+  },
+  {
+    "name": "Bania unspecified",
+    "rop3_code": "111452"
+  },
+  {
+    "name": "Bantar",
+    "rop3_code": "111459"
+  },
+  {
+    "name": "Bantawa",
+    "rop3_code": "101014"
+  },
+  {
+    "name": "Baramu",
+    "rop3_code": "101059"
+  },
+  {
+    "name": "Bari (Hindu traditions)",
+    "rop3_code": "111470"
+  },
+  {
+    "name": "Bedia (Hindu traditions)",
+    "rop3_code": "111509"
+  },
+  {
+    "name": "Bedia (Muslim traditions)",
+    "rop3_code": "112902"
+  },
+  {
+    "name": "Bhand (Muslim traditions)",
+    "rop3_code": "111574"
+  },
+  {
+    "name": "Bhoi (Hindu traditions)",
+    "rop3_code": "111580"
+  },
+  {
+    "name": "Bhoi Kamti",
+    "rop3_code": "117070"
+  },
+  {
+    "name": "Bhoi Kharbind",
+    "rop3_code": "117941"
+  },
+  {
+    "name": "Bhoi Kharot",
+    "rop3_code": "117942"
+  },
+  {
+    "name": "Bhoi Mallah Mewat",
+    "rop3_code": "118472"
+  },
+  {
+    "name": "Bhoi Nikhad",
+    "rop3_code": "117944"
+  },
+  {
+    "name": "Bhote",
+    "rop3_code": "111585"
+  },
+  {
+    "name": "Bind",
+    "rop3_code": "111621"
+  },
+  {
+    "name": "Bote-Majhi",
+    "rop3_code": "111686"
+  },
+  {
+    "name": "Brahmin Bhumihar",
+    "rop3_code": "115705"
+  },
+  {
+    "name": "Brahmin Bohara",
+    "rop3_code": "116130"
+  },
+  {
+    "name": "Brahmin Gaur",
+    "rop3_code": "115717"
+  },
+  {
+    "name": "Brahmin Hill",
+    "rop3_code": "115722"
+  },
+  {
+    "name": "Brahmin Jijhotia",
+    "rop3_code": "115724"
+  },
+  {
+    "name": "Brahmin Joshi",
+    "rop3_code": "115725"
+  },
+  {
+    "name": "Brahmin Kanaujia",
+    "rop3_code": "115727"
+  },
+  {
+    "name": "Brahmin Khandelwal",
+    "rop3_code": "115732"
+  },
+  {
+    "name": "Brahmin Sakaldwipi",
+    "rop3_code": "115755"
+  },
+  {
+    "name": "Brahmin Saraswat",
+    "rop3_code": "115758"
+  },
+  {
+    "name": "Brahmin Sawaria",
+    "rop3_code": "115759"
+  },
+  {
+    "name": "Brahmin Terai",
+    "rop3_code": "115767"
+  },
+  {
+    "name": "Byansi",
+    "rop3_code": "101831"
+  },
+  {
+    "name": "Chamar (Hindu traditions)",
+    "rop3_code": "111752"
+  },
+  {
+    "name": "Chamling",
+    "rop3_code": "102001"
+  },
+  {
+    "name": "Chepang, Tsepang",
+    "rop3_code": "102072"
+  },
+  {
+    "name": "Chhantyal",
+    "rop3_code": "102071"
+  },
+  {
+    "name": "Chhetri",
+    "rop3_code": "111785"
+  },
+  {
+    "name": "Chidimar",
+    "rop3_code": "111749"
+  },
+  {
+    "name": "Churaute",
+    "rop3_code": "111819"
+  },
+  {
+    "name": "Danuwar Rai",
+    "rop3_code": "102443"
+  },
+  {
+    "name": "Darai",
+    "rop3_code": "102448"
+  },
+  {
+    "name": "Darjee",
+    "rop3_code": "111878"
+  },
+  {
+    "name": "Darzi (Hindu traditions)",
+    "rop3_code": "111889"
+  },
+  {
+    "name": "Darzi (Muslim traditions)",
+    "rop3_code": "112930"
+  },
+  {
+    "name": "Deaf",
+    "rop3_code": "114916"
+  },
+  {
+    "name": "Dhandi",
+    "rop3_code": "117148"
+  },
+  {
+    "name": "Dhanuk",
+    "rop3_code": "111925"
+  },
+  {
+    "name": "Dhanuk Dhankar",
+    "rop3_code": "117958"
+  },
+  {
+    "name": "Dharkar",
+    "rop3_code": "111949"
+  },
+  {
+    "name": "Dhimal",
+    "rop3_code": "102575"
+  },
+  {
+    "name": "Dhobi (Muslim traditions)",
+    "rop3_code": "112937"
+  },
+  {
+    "name": "Dhobi Ajudhyabansi",
+    "rop3_code": "118497"
+  },
+  {
+    "name": "Dhobi Kanaujia",
+    "rop3_code": "118499"
+  },
+  {
+    "name": "Dolpa",
+    "rop3_code": "102678"
+  },
+  {
+    "name": "Dom (Hindu traditions)",
+    "rop3_code": "111977"
+  },
+  {
+    "name": "Dom (Muslim traditions)",
+    "rop3_code": "112941"
+  },
+  {
+    "name": "Dura",
+    "rop3_code": "112001"
+  },
+  {
+    "name": "Dusadh (Hindu traditions)",
+    "rop3_code": "111988"
+  },
+  {
+    "name": "Gadaria (Hindu traditions)",
+    "rop3_code": "112021"
+  },
+  {
+    "name": "Gandharva",
+    "rop3_code": "112034"
+  },
+  {
+    "name": "Gangai",
+    "rop3_code": "112120"
+  },
+  {
+    "name": "Gharti",
+    "rop3_code": "103332"
+  },
+  {
+    "name": "Goriya (Hindu traditions)",
+    "rop3_code": "112143"
+  },
+  {
+    "name": "Gurung Ghale",
+    "rop3_code": "103163"
+  },
+  {
+    "name": "Gurung Ghaleg",
+    "rop3_code": "110781"
+  },
+  {
+    "name": "Hajam",
+    "rop3_code": "112187"
+  },
+  {
+    "name": "Halalkhor (Hindu traditions)",
+    "rop3_code": "112196"
+  },
+  {
+    "name": "Halwai (Hindu traditions)",
+    "rop3_code": "112199"
+  },
+  {
+    "name": "Halwai Maira",
+    "rop3_code": "117962"
+  },
+  {
+    "name": "Hayu",
+    "rop3_code": "112214"
+  },
+  {
+    "name": "Jirel",
+    "rop3_code": "104283"
+  },
+  {
+    "name": "Kahar (Hindu traditions)",
+    "rop3_code": "112380"
+  },
+  {
+    "name": "Kaike",
+    "rop3_code": "104416"
+  },
+  {
+    "name": "Kalwar (Hindu traditions)",
+    "rop3_code": "112399"
+  },
+  {
+    "name": "Kalwar Jaiswal",
+    "rop3_code": "117973"
+  },
+  {
+    "name": "Kalwar Sunri",
+    "rop3_code": "118553"
+  },
+  {
+    "name": "Kamar",
+    "rop3_code": "112404"
+  },
+  {
+    "name": "Kami",
+    "rop3_code": "112407"
+  },
+  {
+    "name": "Kandu",
+    "rop3_code": "112418"
+  },
+  {
+    "name": "Kanjar (Hindu traditions)",
+    "rop3_code": "112420"
+  },
+  {
+    "name": "Kayastha (Hindu traditions)",
+    "rop3_code": "112470"
+  },
+  {
+    "name": "Khaling",
+    "rop3_code": "104476"
+  },
+  {
+    "name": "Khas",
+    "rop3_code": "112509"
+  },
+  {
+    "name": "Khatwa",
+    "rop3_code": "112541"
+  },
+  {
+    "name": "Koch (Hindu traditions)",
+    "rop3_code": "105069"
+  },
+  {
+    "name": "Koiri (Hindu traditions)",
+    "rop3_code": "112604"
+  },
+  {
+    "name": "Kori",
+    "rop3_code": "112632"
+  },
+  {
+    "name": "Kulung",
+    "rop3_code": "105381"
+  },
+  {
+    "name": "Kumal",
+    "rop3_code": "105395"
+  },
+  {
+    "name": "Kumhar Magahia",
+    "rop3_code": "117999"
+  },
+  {
+    "name": "Kumhar, Kusavar (Hindu traditions)",
+    "rop3_code": "112696"
+  },
+  {
+    "name": "Kurmi (Hindu traditions)",
+    "rop3_code": "112717"
+  },
+  {
+    "name": "Kyerung",
+    "rop3_code": "105548"
+  },
+  {
+    "name": "Lhomi, Shing Saapa",
+    "rop3_code": "114165"
+  },
+  {
+    "name": "Loba",
+    "rop3_code": "105808"
+  },
+  {
+    "name": "Lodha (Hindu traditions)",
+    "rop3_code": "112773"
+  },
+  {
+    "name": "Lohar (Hindu traditions)",
+    "rop3_code": "112774"
+  },
+  {
+    "name": "Lohorung",
+    "rop3_code": "105824"
+  },
+  {
+    "name": "Lunia (Hindu traditions)",
+    "rop3_code": "112789"
+  },
+  {
+    "name": "Magar",
+    "rop3_code": "102848"
+  },
+  {
+    "name": "Majhi",
+    "rop3_code": "106076"
+  },
+  {
+    "name": "Mali (Hindu traditions)",
+    "rop3_code": "114473"
+  },
+  {
+    "name": "Mallah (Hindu traditions)",
+    "rop3_code": "112835"
+  },
+  {
+    "name": "Mallah Chain (Hindu traditions)",
+    "rop3_code": "118169"
+  },
+  {
+    "name": "Mallah Dhawa (Hindu traditions)",
+    "rop3_code": "118303"
+  },
+  {
+    "name": "Mallah Kewat (Hindu traditions)",
+    "rop3_code": "118172"
+  },
+  {
+    "name": "Mech",
+    "rop3_code": "112946"
+  },
+  {
+    "name": "Mewahang",
+    "rop3_code": "107216"
+  },
+  {
+    "name": "Miyan",
+    "rop3_code": "117708"
+  },
+  {
+    "name": "Mochi (Hindu traditions)",
+    "rop3_code": "113075"
+  },
+  {
+    "name": "Musahar (Hindu traditions)",
+    "rop3_code": "113160"
+  },
+  {
+    "name": "Nachhiring",
+    "rop3_code": "106997"
+  },
+  {
+    "name": "Nai (Hindu traditions)",
+    "rop3_code": "113203"
+  },
+  {
+    "name": "Nat (Hindu traditions)",
+    "rop3_code": "113224"
+  },
+  {
+    "name": "Newah",
+    "rop3_code": "107217"
+  },
+  {
+    "name": "Nubri",
+    "rop3_code": "117304"
+  },
+  {
+    "name": "Oraon, Dhangar",
+    "rop3_code": "107674"
+  },
+  {
+    "name": "Pahari",
+    "rop3_code": "115804"
+  },
+  {
+    "name": "Pashtun, Pathan",
+    "rop3_code": "116298"
+  },
+  {
+    "name": "Pinjara",
+    "rop3_code": "113353"
+  },
+  {
+    "name": "Qazi",
+    "rop3_code": "112472"
+  },
+  {
+    "name": "Rai",
+    "rop3_code": "113409"
+  },
+  {
+    "name": "Rajaka Dhobi (Hindu traditions)",
+    "rop3_code": "111944"
+  },
+  {
+    "name": "Rajbansi (Hindu traditions)",
+    "rop3_code": "108268"
+  },
+  {
+    "name": "Rajbhar",
+    "rop3_code": "113416"
+  },
+  {
+    "name": "Rajdhob",
+    "rop3_code": "113457"
+  },
+  {
+    "name": "Raji",
+    "rop3_code": "108272"
+  },
+  {
+    "name": "Rajput (Hindu traditions)",
+    "rop3_code": "113412"
+  },
+  {
+    "name": "Rajput (Muslim traditions)",
+    "rop3_code": "113109"
+  },
+  {
+    "name": "Rajput Bais (Muslim traditions)",
+    "rop3_code": "115975"
+  },
+  {
+    "name": "Rajput Nau",
+    "rop3_code": "115984"
+  },
+  {
+    "name": "Raute",
+    "rop3_code": "108317"
+  },
+  {
+    "name": "Rayeen (Muslim traditions)",
+    "rop3_code": "112710"
+  },
+  {
+    "name": "Rongkup-Lepcha",
+    "rop3_code": "105723"
+  },
+  {
+    "name": "Sampang",
+    "rop3_code": "108585"
+  },
+  {
+    "name": "Santal (Sawntal)",
+    "rop3_code": "108674"
+  },
+  {
+    "name": "Sarbaria",
+    "rop3_code": "117149"
+  },
+  {
+    "name": "Sarki",
+    "rop3_code": "113530"
+  },
+  {
+    "name": "Sayyid",
+    "rop3_code": "113540"
+  },
+  {
+    "name": "Shaikh",
+    "rop3_code": "113585"
+  },
+  {
+    "name": "Shaikh Qureshi",
+    "rop3_code": "118058"
+  },
+  {
+    "name": "Sherpa",
+    "rop3_code": "108938"
+  },
+  {
+    "name": "Sherpa Helambu",
+    "rop3_code": "103752"
+  },
+  {
+    "name": "Silpkar (Hindu traditions)",
+    "rop3_code": "113610"
+  },
+  {
+    "name": "Sonar (Hindu traditions)",
+    "rop3_code": "113659"
+  },
+  {
+    "name": "Sunri (Hindu traditions)",
+    "rop3_code": "113705"
+  },
+  {
+    "name": "Sunuwar",
+    "rop3_code": "109614"
+  },
+  {
+    "name": "Tajpuriya",
+    "rop3_code": "115556"
+  },
+  {
+    "name": "Tamang",
+    "rop3_code": "102861"
+  },
+  {
+    "name": "Tamboli (Hindu traditions)",
+    "rop3_code": "113730"
+  },
+  {
+    "name": "Tanti (Hindu traditions)",
+    "rop3_code": "113743"
+  },
+  {
+    "name": "Teli (Hindu traditions)",
+    "rop3_code": "113757"
+  },
+  {
+    "name": "Teli Gangauta (Hindu traditions)",
+    "rop3_code": "118081"
+  },
+  {
+    "name": "Thakali",
+    "rop3_code": "113764"
+  },
+  {
+    "name": "Thakali Marphali",
+    "rop3_code": "115558"
+  },
+  {
+    "name": "Thakuri",
+    "rop3_code": "113798"
+  },
+  {
+    "name": "Thakuria",
+    "rop3_code": "113470"
+  },
+  {
+    "name": "Thami",
+    "rop3_code": "110002"
+  },
+  {
+    "name": "Tharu Khawas",
+    "rop3_code": "117300"
+  },
+  {
+    "name": "Tharu Rana",
+    "rop3_code": "118179"
+  },
+  {
+    "name": "Tharu unspecified",
+    "rop3_code": "110011"
+  },
+  {
+    "name": "Thulung",
+    "rop3_code": "110029"
+  },
+  {
+    "name": "Tokpegola",
+    "rop3_code": "115560"
+  },
+  {
+    "name": "Tsum",
+    "rop3_code": "110222"
+  },
+  {
+    "name": "Valmiki (Hindu traditions)",
+    "rop3_code": "119347"
+  },
+  {
+    "name": "Valmiki (Muslim traditions)",
+    "rop3_code": "119348"
+  },
+  {
+    "name": "Walang",
+    "rop3_code": "117150"
+  },
+  {
+    "name": "Yadav (Hindu traditions)",
+    "rop3_code": "111292"
+  },
+  {
+    "name": "Yadav Dhindhor",
+    "rop3_code": "118117"
+  },
+  {
+    "name": "Yadav Gaoli",
+    "rop3_code": "118118"
+  },
+  {
+    "name": "Yadav Gola",
+    "rop3_code": "118119"
+  },
+  {
+    "name": "Yadav Gualbans (Hindu traditions)",
+    "rop3_code": "118121"
+  },
+  {
+    "name": "Yadav Kaonra",
+    "rop3_code": "118611"
+  },
+  {
+    "name": "Yadav Rawat",
+    "rop3_code": "118123"
+  },
+  {
+    "name": "Yakkha",
+    "rop3_code": "110935"
+  },
+  {
+    "name": "Yakthumba, Limbu",
+    "rop3_code": "105776"
+  },
+  {
+    "name": "Yamphu",
+    "rop3_code": "110965"
+  },
+  {
+    "name": "Yehlmo",
+    "rop3_code": "115808"
+  },
+  {
+    "name": "Other",
+    "rop3_code": null
+  }
+]

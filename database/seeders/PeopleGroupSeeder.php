@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PeopleGroup;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class PeopleGroupSeeder extends Seeder
 {
@@ -12,44 +13,14 @@ class PeopleGroupSeeder extends Seeder
      */
     public function run(): void
     {
-        $groups = [
-            'Chamar (Hindu traditions)',
-            'Chepang',
-            'Chhetri',
-            'Darjee',
-            'Dhanuk Dhankar',
-            'Jat (Hindu Traditions)',
-            'Kami',
-            'Koiri (Hindu traditions)',
-            'Magar',
-            'Majhi',
-            'Newar',
-            'Rajput Saithwar',
-            'Sarki',
-            'Sherpa',
-            'Sonar (Hindu traditions)',
-            'Sunuwar',
-            'Teli (Hindu traditions)',
-            'Thakali Tin Gaule',
-            'Thakuri',
-            'Thamang',
-            'Thapa',
-            'Tharu',
-            'Tsum',
-            'Yakha',
-            'Yakthumba',
-            'Yadav (Hindu traditions)',
-            'Yadav Gualbans (Hindu traditions)',
-            'Yadav Rawat',
-            'Yamphu',
-            'Yehlmo',
-            'Other'
-        ];
+        $json = File::get(database_path('seeders/data/people-groups.json'));
+        $peopleGroups = json_decode($json, true);
 
-        foreach ($groups as $group) {
-            \App\Models\PeopleGroup::create([
-                'name' => $group,
-            ]);
-        }
+        $insertData = array_map(fn ($group) => [
+            'name' => $group['name'],
+            'rop3_code' => $group['rop3_code'],
+        ], $peopleGroups);
+
+        PeopleGroup::insert($insertData);
     }
 }
