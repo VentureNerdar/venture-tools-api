@@ -109,11 +109,13 @@ class ChurchController extends Controller
 
             $church->churchMembers()->delete();
             foreach ($churchMembers as $memberData) {
-                ChurchMember::create([
-                    'church_id' => $church->id,
-                    'people_group_id' => $memberData['people_group_id'],
-                    'amount' => $memberData['amount'],
-                ]);
+                if ($memberData['amount'] != 0) {
+                    ChurchMember::create([
+                        'church_id' => $church->id,
+                        'people_group_id' => $memberData['people_group_id'],
+                        'amount' => $memberData['amount'],
+                    ]);
+                }
             }
         } else {
             $church->churchMembers()->delete();

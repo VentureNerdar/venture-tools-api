@@ -23,7 +23,7 @@ class ChurchRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:300',
-            'community_id' => 'required|integer|exists:communities,id',
+            'community_id' => 'nullable|integer|exists:communities,id',
             'description' => 'nullable|string',
             'location_longitude' => 'nullable|numeric|min:-180|max:180',
             'location_latitude' => 'nullable|numeric|min:-90|max:90',

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('is_active')->default(true);
             $table->foreignIdFor(User::class, 'assigned_to')->nullable();
-            $table->foreignIdFor(Community::class);
+            $table->foreignIdFor(Community::class)->nullable();
 
             $table->string('name', 300)->index();
             $table->text('description')->nullable();

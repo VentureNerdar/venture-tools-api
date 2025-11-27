@@ -1889,7 +1889,12 @@ class TranslationSeeder extends Seeder
                 'en' => 'Choose church planter',
                 'mm' => 'ဘုရားကျောင်းတည်ထောင်သူကိုရွေးချယ်ပါ',
                 'ne' => 'चर्च प्लाटर छान्नुहोस्'
-            ]
+            ],
+            'enter_phone_number' => [
+                'en' => "Enter phone number",
+                'mm' => '',
+                'ne' => ''
+            ],
 
         ];
 
